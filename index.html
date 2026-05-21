@@ -33,14 +33,14 @@
         }
         #offline-banner { background-color: #ff4c4c; color: white; text-align: center; font-size: 12px; padding: 4px; display: none; z-index: 9999; }
         
-        /* Custom Alert Modal - Swapped Colors as requested */
+        /* Custom Alert Modal */
         #custom-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 99999; }
         .custom-modal-box { background: var(--card-bg); padding: 25px; border-radius: 15px; width: 85%; max-width: 350px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .custom-modal-box p { color: var(--text-color); font-size: 16px; margin-bottom: 20px; font-weight: 500; }
         .custom-modal-btns { display: flex; justify-content: center; gap: 15px; }
         .custom-modal-btns button { padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px; }
-        #cm-btn-no { background: #4caf50; color: white; display: none; } /* Cancel is now Green */
-        #cm-btn-yes { background: #ff4c4c; color: white; } /* OK is now Red */
+        #cm-btn-no { background: #ff4c4c; color: white; display: none; }
+        #cm-btn-yes { background: #4caf50; color: white; }
 
         /* Login Screen */
         #login-screen, #owner-auth-screen {
@@ -155,14 +155,12 @@
         #side-drawer.open { left: 0; }
         .drawer-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1999; display: none; }
         .drawer-overlay.open { display: block; }
-        
-        .profile-top-title { font-family: 'Brush Script MT', 'Georgia', cursive, serif; font-size: 26px; font-weight: bold; color: var(--accent-color); margin-bottom: 15px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
-        .profile-header { padding: 25px 20px; background: #2b3a4a; color: white; text-align: center; position: relative; }
+        .profile-header { padding: 30px 20px; background: #2b3a4a; color: white; text-align: center; position: relative; }
         .profile-pic-wrapper { position: relative; display: inline-block; cursor: pointer; }
         .profile-pic { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid white; background: #ccc; }
         .profile-pic-cam { position: absolute; bottom: 0; right: 0; background: var(--accent-color); color: #fff; width: 25px; height: 25px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 12px; border: 2px solid white; }
         
-        .drawer-footer { padding: 15px; text-align: center; font-size: 12px; border-top: 1px solid var(--border-color); }
+        .drawer-footer { padding: 20px; text-align: center; font-size: 12px; border-top: 1px solid var(--border-color); }
         .setting-item { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .switch { position: relative; display: inline-block; width: 45px; height: 22px; }
         .switch input { opacity: 0; width: 0; height: 0; }
@@ -205,6 +203,8 @@
         .user-list-pic { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #eee; }
         
         .hide { display: none !important; }
+
+        /* Drag Over Highlight */
         .drag-over { border: 2px dashed #d4af37 !important; opacity: 0.6; }
 
         /* Contact Us New Styling */
@@ -215,18 +215,6 @@
         .contact-num-txt { font-size: 20px; color: gray; font-weight: bold; letter-spacing: 1px;}
         .call-btn-circle { background: #4caf50; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 26px; text-decoration: none; box-shadow: 0 4px 12px rgba(76,175,80,0.5); }
         .contact-admin-act { position: absolute; top: 15px; right: 15px; display: flex; gap: 18px; }
-
-        /* Social Media Section in Drawer */
-        .drawer-social-section { margin: 15px 0; text-align: center; }
-        .drawer-social-title { font-size: 14px; font-weight: bold; color: #3498db; letter-spacing: 1px; margin-bottom: 10px; }
-        .social-icons-container { display: flex; justify-content: center; gap: 14px; }
-        .social-icon-btn { font-size: 24px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background: var(--card-bg); box-shadow: 0 3px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .social-icon-btn:active { transform: scale(0.9); }
-        .si-yt { color: #ff0000; }
-        .si-wa { color: #25d366; }
-        .si-ig { color: #e1306c; }
-        .si-fb { color: #1877f2; }
-        .si-web { color: #f39c12; }
 
     </style>
 </head>
@@ -275,7 +263,7 @@
         <div class="logo-container">
             <h1>MS²<span>Coaching Centre</span></h1>
         </div>
-        <div class="xp-badge" onclick="openPage('leaderboard-page')"><i class="fa-solid fa-book"></i> XP</div>
+        <div class="xp-badge" onclick="openPage('leaderboard-page')">📚 XP</div>
     </header>
 
     <div id="main-content">
@@ -543,7 +531,7 @@
     </div>
 
     <div id="contact-info-page" class="sub-page">
-        <div class="sub-header"><i class="fa-solid fa-arrow-left" onclick="closePage('contact-info-page');"></i><h2>Contact Us</h2></div>
+        <div class="sub-header"><i class="fa-solid fa-arrow-left" onclick="closePage('contact-info-page')"></i><h2>Contact Us</h2></div>
         <div class="sub-content policy-container">
             <h3 class="policy-title">Contact Us</h3>
             <p>We value your feedback and are here to assist you with any queries regarding our coaching services or the <b>MS² Coaching Centre App</b>. Whether you are facing issues with the app or need information about our courses, feel free to get in touch with us.</p>
@@ -569,7 +557,7 @@
     </div>
 
     <div id="about-us-page" class="sub-page">
-        <div class="sub-header"><i class="fa-solid fa-arrow-left" onclick="closePage('about-us-page');"></i><h2>About Us</h2></div>
+        <div class="sub-header"><i class="fa-solid fa-arrow-left" onclick="closePage('about-us-page')"></i><h2>About Us</h2></div>
         <div class="sub-content policy-container">
             <h3 class="policy-title">About Us</h3>
             <p>Welcome to <b>MS² Coaching Centre</b>, your trusted partner in academic excellence and career guidance.</p>
@@ -605,7 +593,7 @@
     </div>
 
     <div id="privacy-page" class="sub-page">
-        <div class="sub-header"><i class="fa-solid fa-arrow-left" onclick="closePage('privacy-page');"></i><h2>Privacy Policy</h2></div>
+        <div class="sub-header"><i class="fa-solid fa-arrow-left" onclick="closePage('privacy-page')"></i><h2>Privacy Policy</h2></div>
         <div class="sub-content policy-container" id="massive-privacy-content">
         </div>
     </div>
@@ -619,8 +607,7 @@
     <div class="drawer-overlay" onclick="toggleDrawer()"></div>
     <div id="side-drawer">
         <div class="profile-header">
-            <!-- Stylish MS² App Heading Added -->
-            <div class="profile-top-title">MS² App</div>
+            <h2 style="font-family: 'Brush Script MT', 'Georgia', cursive; font-size: 32px; color: var(--accent-color); margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">MS² App</h2>
             <input type="file" id="prof-pic-upload" accept="image/*" style="display:none" onchange="handleProfPic(event)">
             <div class="profile-pic-wrapper" onclick="document.getElementById('prof-pic-upload').click()">
                 <img id="drawer-pic" class="profile-pic" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
@@ -629,7 +616,7 @@
             <h3 id="p-name" style="margin-top:10px;">Student Name</h3>
             <p id="p-class">Class</p>
         </div>
-        <div style="padding:15px; flex:1">
+        <div style="padding:20px; flex:1">
             <input type="text" id="up-name" style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #ddd;">
             <select id="up-class" style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #ddd;">
                 <option value="9th">9th</option><option value="10th">10th</option><option value="11th">11th</option><option value="12th">12th</option>
@@ -637,24 +624,20 @@
             <button onclick="upProf()" style="width:100%; padding:10px; background:#4a90e2; color:white; border:none; border-radius:5px;">Save Changes</button>
         </div>
         <div class="drawer-footer">
-            
-            <!-- Visit Us and Social Link Icons Added Above Version -->
-            <div class="drawer-social-section">
-                <div class="drawer-social-title">VISIT US</div>
-                <div class="social-icons-container">
-                    <a href="https://www.youtube.com/@MS2_Coaching_Centre" target="_blank" class="social-icon-btn si-yt"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://whatsapp.com/channel/0029Vb7LJAQAInPiXzopbK1C" target="_blank" class="social-icon-btn si-wa"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="https://www.instagram.com/ms2_coaching_centre/" target="_blank" class="social-icon-btn si-ig"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61572137833116" target="_blank" class="social-icon-btn si-fb"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://ms2coachingcentre.blogspot.com" target="_blank" class="social-icon-btn si-web"><i class="fa-solid fa-globe"></i></a>
-                </div>
+            <h4 style="color: #4a90e2; margin-bottom: 10px; font-size: 14px; font-weight: 800;">VISIT US</h4>
+            <div style="display: flex; justify-content: center; gap: 18px; margin-bottom: 15px; font-size: 24px;">
+                <a href="https://www.youtube.com/@MS2_Coaching_Centre" target="_blank" style="color: #FF0000; text-decoration: none;"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://whatsapp.com/channel/0029Vb7LJAQAInPiXzopbK1C" target="_blank" style="color: #25D366; text-decoration: none;"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/ms2_coaching_centre/" target="_blank" style="color: #E1306C; text-decoration: none;"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61572137833116" target="_blank" style="color: #1877F2; text-decoration: none;"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://ms2coachingcentre.blogspot.com" target="_blank" style="color: #ff9800; text-decoration: none;"><i class="fa-solid fa-globe"></i></a>
             </div>
-
-            <p>App Version 11.09.20</p>
-            <a onclick="openPage('contact-info-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Contact Us</a>
-            <a onclick="openPage('about-us-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">About Us</a>
-            <a onclick="openPage('privacy-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Privacy Policy</a>
-            <p>Made with ♥️ in India</p>
+            
+            <p style="margin-bottom: 10px; font-weight: bold; color: gray;">App Version 11.09.20</p>
+            <a onclick="navFromDrawer('contact-info-page')" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Contact Us</a>
+            <a onclick="navFromDrawer('about-us-page')" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">About Us</a>
+            <a onclick="navFromDrawer('privacy-page')" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Privacy Policy</a>
+            <p style="margin-top: 15px;">Made with ♥️ in India</p>
         </div>
     </div>
 </div>
@@ -665,16 +648,15 @@
 
     let user = JSON.parse(localStorage.getItem('ms2_u'));
     let isAdmin = false, fullAdmin = false, curCls = '', exp = '', editId = null, noteEditId = null, isDeg = true;
-    let contactEditId = null; 
+    let contactEditId = null; // New Contact Us state
+    
+    // Generic List States
     let gType = '', gClass = '', gSub = '', gEditId = null; 
 
     window.tempLoginName = ''; window.tempLoginClass = '';
     let activeNotifImg = '';
 
-    // Active sub-page tracking stack for handling gesture back actions smoothly
-    let openedPagesStack = [];
-
-    // XP Tracker (📚)
+    // XP Tracker
     setInterval(() => {
         if(user && user.name !== 'owner.MS².app') {
             user.xp = (user.xp || 0) + 1;
@@ -682,7 +664,27 @@
         }
     }, 60000); // 1 XP per minute
 
-    /* CUSTOM ALERTS - BUTTON COLORS SWAPPED (Red for OK, Green for Cancel) */
+    /* BACK NAVIGATION (HISTORY API) & POPSTATE HANDLER */
+    window.addEventListener('popstate', (e) => {
+        // Band karein saari overlay and subpages back button dabaane par
+        document.querySelectorAll('.sub-page.open').forEach(p => p.classList.remove('open'));
+        document.getElementById('side-drawer').classList.remove('open');
+        document.querySelector('.drawer-overlay').classList.remove('open');
+        document.getElementById('pdf-page-indicator').style.display = 'none'; // PDF count bug fix
+        document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+
+        // Restore nested state if navigating back to an open state
+        if(e.state) {
+            if(e.state.page) {
+                document.getElementById(e.state.page).classList.add('open');
+            } else if (e.state.drawer) {
+                document.getElementById('side-drawer').classList.add('open');
+                document.querySelector('.drawer-overlay').classList.add('open');
+            }
+        }
+    });
+
+    /* CUSTOM ALERTS */
     let cmResolve = null;
     function cAlert(msg) {
         document.getElementById('custom-modal-msg').innerText = msg;
@@ -714,27 +716,8 @@
     }
 
     window.onload = () => {
-        // Initialize history tracking state to lock side gesture directly cutting app
-        history.pushState({page: 'root'}, '');
-        
-        window.addEventListener('popstate', function(event) {
-            if (openedPagesStack.length > 0) {
-                // If any sub-page is active, close the top-most one instead of exiting app
-                let topPage = openedPagesStack[openedPagesStack.length - 1];
-                if(topPage === 'media-viewer-page') {
-                    closeMediaViewer();
-                } else {
-                    closePage(topPage);
-                }
-                // Push state again to ensure lock remains active for next gesture click
-                history.pushState({page: 'root'}, '');
-            } else {
-                // If on root screen and side gesture is triggered, let it act standard or prompt exit if desired.
-                // Standard structure allows normal closing when stack is fully empty.
-            }
-        });
-
         if(user) { 
+            // Re-verify admin flags if previously logged in
             if(user.name === 'owner.MS².app') {
                 isAdmin = true;
                 fullAdmin = user.fullAdmin || false;
@@ -764,6 +747,7 @@
             window.tempLoginClass = c;
             return;
         }
+
         proceedLogin(n, c, false);
     }
 
@@ -793,7 +777,7 @@
         let allU = JSON.parse(localStorage.getItem('ms2_all_users')) || [];
         let ext = allU.findIndex(u => u.name === n);
         if(ext >= 0) {
-            user.xp = allU[ext].xp || 0; 
+            user.xp = allU[ext].xp || 0; // Preserve XP on re-login
             allU[ext] = user; 
         } else {
             allU.push(user);
@@ -826,12 +810,27 @@
         document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));
         document.getElementById('tab-' + t).classList.add('active');
         el.classList.add('active');
-        if(t === 'special') { rendPhotos(); rendNotes(); }
+        if(t === 'special') rendPhotos(); 
+        if(t === 'special') rendNotes();
     }
 
     function toggleDrawer() {
-        document.getElementById('side-drawer').classList.toggle('open');
-        document.querySelector('.drawer-overlay').classList.toggle('open');
+        const drawer = document.getElementById('side-drawer');
+        if(drawer.classList.contains('open')) {
+            history.back(); // letting popstate handle close
+        } else {
+            history.pushState({drawer: true}, null, "");
+            drawer.classList.add('open');
+            document.querySelector('.drawer-overlay').classList.add('open');
+        }
+    }
+
+    function navFromDrawer(p) {
+        history.replaceState({page: p}, null, "");
+        document.getElementById('side-drawer').classList.remove('open');
+        document.querySelector('.drawer-overlay').classList.remove('open');
+        document.getElementById(p).classList.add('open');
+        if(p === 'leaderboard-page') rendLeaderboard();
     }
 
     function handleProfPic(e) {
@@ -870,17 +869,15 @@
     }
 
     function openPage(p) { 
+        history.pushState({page: p}, null, "");
         document.getElementById(p).classList.add('open'); 
-        if(!openedPagesStack.includes(p)) openedPagesStack.push(p);
         if(p === 'leaderboard-page') rendLeaderboard();
     }
-    
     function closePage(p) { 
-        document.getElementById(p).classList.remove('open'); 
-        openedPagesStack = openedPagesStack.filter(item => item !== p);
+        history.back();
     }
 
-    /* LEADERBOARD & XP (📚) */
+    /* LEADERBOARD & XP */
     function rendLeaderboard() {
         const l = document.getElementById('leaderboard-list');
         l.innerHTML = '';
@@ -910,7 +907,7 @@
         });
     }
 
-    /* USERS LIST */
+    /* USERS LIST (FULL ADMIN ONLY) */
     function openUsersList() {
         const l = document.getElementById('users-list-container'); l.innerHTML = '';
         let allU = JSON.parse(localStorage.getItem('ms2_all_users')) || [];
@@ -934,7 +931,7 @@
         openPage('user-detail-page');
     }
 
-    /* CONTACT US LOGIC */
+    /* CONTACT US LOGIC (NEW) */
     function openContactPage() {
         document.getElementById('admin-contact-area').style.display = isAdmin ? 'block' : 'none';
         contactEditId = null;
@@ -950,6 +947,7 @@
         const num = document.getElementById('contact-num-input').value.trim();
         
         if(!name || !num) { cAlert("Please enter both Name and Mobile Number!"); return; }
+        
         let contacts = JSON.parse(localStorage.getItem('ms2_contacts')) || [];
         
         if(contactEditId) {
@@ -959,6 +957,7 @@
         } else {
             contacts.push({ id: Date.now(), name: name, num: num });
         }
+        
         localStorage.setItem('ms2_contacts', JSON.stringify(contacts));
         document.getElementById('contact-name-input').value = '';
         document.getElementById('contact-num-input').value = '';
@@ -1059,6 +1058,7 @@
                 ns.push({ id: Date.now(), cls: curCls, msg: m, img: activeNotifImg, time: new Date().toLocaleString() }); 
             }
             localStorage.setItem('ms2_ns', JSON.stringify(ns));
+            
             document.getElementById('admin-msg').value = ''; 
             clearNotifImg();
             rendNotif();
@@ -1074,6 +1074,7 @@
         
         ns.forEach(n => {
             const d = document.createElement('div'); d.className = 'noti-card';
+            
             let contentHTML = `<div style="font-weight:bold; font-size:16px; color:var(--text-color);">New Notification 🔔</div>`;
             contentHTML += `<span class="noti-time">${n.time}</span>`;
             
@@ -1083,6 +1084,7 @@
             if(isAdmin) {
                 const ctrl = document.createElement('div'); ctrl.className = 'admin-controls';
                 ctrl.onclick = (e) => e.stopPropagation();
+                
                 let safeMsg = n.msg ? n.msg.replace(/'/g, "\\'").replace(/"/g, "&quot;").replace(/\n/g, "\\n") : "";
                 ctrl.innerHTML = `<i class="fa-solid fa-pen-to-square" style="color:#d4af37" onclick="editNotif(${n.id}, '${safeMsg}', '${n.img || ''}')"></i><i class="fa-solid fa-trash" style="color:red" onclick="delNotif(${n.id})"></i>`;
                 d.appendChild(ctrl);
@@ -1109,6 +1111,7 @@
             imgEl.src = '';
             imgEl.onclick = null;
         }
+        
         openPage('notif-detail-page');
     }
 
@@ -1134,7 +1137,7 @@
         } 
     }
 
-    /* IN-APP DOWNLOAD LOGIC */
+    /* IN-APP DOWNLOAD LOGIC + MULTI DELETE */
     function downloadAppFile(id, originalType) {
         let sourceKey = `ms2_${originalType}s`; 
         let sourceArr = JSON.parse(localStorage.getItem(sourceKey));
@@ -1175,7 +1178,7 @@
     function enableBulkMode(id) {
         bulkMode = true;
         document.getElementById('bulk-del-btn').style.display = 'block';
-        rendDownloads(); 
+        rendDownloads(); // re-render to show checkboxes
         let cb = document.getElementById('cb-' + id);
         if(cb) cb.checked = true;
     }
@@ -1208,6 +1211,7 @@
 
         dls.forEach(d => {
             const div = document.createElement('div'); div.className = 'media-item';
+            
             let chkHtml = bulkMode ? `<input type="checkbox" class="multi-check" id="cb-${d.id}" value="${d.id}" style="display:block;">` : '';
 
             div.innerHTML = `
@@ -1229,6 +1233,7 @@
                 div.addEventListener('mouseup', endPress);
                 div.addEventListener('mouseleave', endPress);
             }
+
             l.appendChild(div);
         });
     }
@@ -1241,6 +1246,7 @@
             rendDownloads();
         }
     }
+
 
     /* UNIVERSAL MEDIA (NCERT, PYQs, Syllabus, Solutions) */
     function openNcertClassPage() { gType = 'ncert'; document.getElementById('g-class-title').innerText = "NCERT Books - Class"; openPage('generic-class-page'); }
@@ -1293,6 +1299,7 @@
         const sessionName = document.getElementById('g-session-input').value.trim();
         
         if(!docName) { cAlert("Please enter Document Name!"); event.target.value = ''; return; }
+        
         let storageKey = `ms2_${gType}s`;
 
         if(file && file.type === "application/pdf") {
@@ -1336,6 +1343,7 @@
         }
     }
 
+    // PDF REORDERING LOGIC
     function swapGArray(idx1, idx2) {
         let storageKey = `ms2_${gType}s`;
         let items = JSON.parse(localStorage.getItem(storageKey)) || [];
@@ -1360,10 +1368,12 @@
         let items = (JSON.parse(localStorage.getItem(storageKey)) || []).filter(x => x.cls === gClass && x.sub === gSub);
         
         if(items.length === 0) { l.innerHTML = '<div class="empty-state">No Content !</div>'; return; }
+
         let colorMap = { 'ncert': '#009FFD', 'syl': '#B224EF', 'pyq': '#f83600', 'sol': '#02aab0' };
 
         items.forEach((p, idx) => {
             const d = document.createElement('div'); d.className = 'media-item';
+            
             let extraHtml = '';
             if(p.chapter) extraHtml += `<span style="font-size:12px; color:gray; font-weight:bold; margin-right:10px;">${p.chapter}</span>`;
             if(p.session) extraHtml += `<span style="font-size:12px; color:#d4af37; font-weight:bold;">${p.session}</span>`;
@@ -1393,6 +1403,7 @@
     function handleCameraUpload(event) {
         const file = event.target.files[0];
         const imgName = document.getElementById('camera-name-input').value.trim();
+        
         if(!imgName) { cAlert("Please enter Image Name first!"); event.target.value = ''; return; }
 
         if(file && file.type.startsWith('image/')) {
@@ -1442,12 +1453,15 @@
     function rendPhotos() {
         const l = document.getElementById('camera-list-container'); l.innerHTML = '';
         let photos = JSON.parse(localStorage.getItem('ms2_photos')) || [];
+        
         if(photos.length === 0) { l.innerHTML = '<div class="empty-state">No Content !</div>'; return; }
 
         photos.sort((a, b) => (b.pinned - a.pinned) || (b.id - a.id));
+        
         photos.forEach(p => {
             const d = document.createElement('div'); 
             d.className = 'media-item cam-item' + (p.pinned ? ' cam-pinned' : '');
+            
             d.innerHTML = `
                 <div class="media-info" onclick="viewMedia('${p.data}', 'img')">
                     <h4><i class="fa-solid fa-camera" style="color:#ff0844;"></i> ${p.name || 'Photo'}</h4>
@@ -1462,16 +1476,15 @@
         });
     }
 
-    /* IN-APP MEDIA VIEWER LOGIC */
+    /* PERFECT IN-APP MEDIA VIEWER LOGIC (Zero Margin PDF) */
     function viewMedia(dataUrl, type) {
         document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+        
         const container = document.getElementById('media-viewer-container');
         container.innerHTML = '';
         
         const indicator = document.getElementById('pdf-page-indicator');
         indicator.style.display = 'none';
-
-        if(!openedPagesStack.includes('media-viewer-page')) openedPagesStack.push('media-viewer-page');
 
         if(type === 'pdf') {
             document.getElementById('media-viewer-title').innerText = "View PDF";
@@ -1500,6 +1513,7 @@
                     });
                 }
 
+                // Scroll Listener for Page Indicator
                 container.onscroll = function() {
                     let canvases = document.querySelectorAll('.pdf-page-canvas');
                     if(canvases.length > 0) {
@@ -1510,6 +1524,7 @@
                         indicator.innerText = 'Page: ' + curPage;
                     }
                 };
+
             }).catch(function(error) {
                 container.innerHTML = '<p style="padding:20px; color:red; text-align:center;">Error loading PDF. File corrupted or too large.</p>';
             });
@@ -1517,15 +1532,11 @@
             document.getElementById('media-viewer-title').innerText = "View Image";
             container.innerHTML = `<img class="img-viewer-fullscreen" src="${dataUrl}">`;
         }
-        document.getElementById('media-viewer-page').classList.add('open');
+        openPage('media-viewer-page');
     }
 
     function closeMediaViewer() {
-        document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-        document.getElementById('media-viewer-page').classList.remove('open');
-        // FIXED: Hides page indicator perfectly when closing PDF viewer
-        document.getElementById('pdf-page-indicator').style.display = 'none';
-        openedPagesStack = openedPagesStack.filter(item => item !== 'media-viewer-page');
+        history.back(); // Using history to naturally close viewer
     }
 
     /* CALCULATOR */
@@ -1606,9 +1617,10 @@
     function toggleTheme() { localStorage.setItem('ms2_d', document.getElementById('theme-toggle').checked ? '1' : '0'); applyT(); }
     function changeLanguage() { const l = document.getElementById('lang-select').value; document.querySelectorAll('.lang-text').forEach(x => x.innerText = x.getAttribute('data-' + l)); }
 
-    /* DELETE ACCOUNT */
+    /* SECURE & FIXED DELETE ACCOUNT */
     async function deleteAccount() {
         if(await cConfirm("DANGER: This will permanently delete your Name, Class, and all Saved Data from this device. Are you sure?")) {
+            
             let allU = JSON.parse(localStorage.getItem('ms2_all_users')) || [];
             allU = allU.filter(u => u.name !== user.name);
             localStorage.setItem('ms2_all_users', JSON.stringify(allU));
@@ -1620,11 +1632,13 @@
             localStorage.removeItem('ms2_downloads');
             
             cAlert("Account data successfully wiped.");
-            setTimeout(() => { window.location.replace(window.location.href); }, 1000);
+            setTimeout(() => {
+                window.location.replace(window.location.href);
+            }, 1000);
         }
     }
 
-    /* PRIVACY POLICY */
+    /* UNIQUE & MASSIVE PRIVACY POLICY GENERATOR */
     function generateMassivePolicy() {
         const uniquePolicyHTML = `
         <h3 class="policy-title">MS² Coaching Centre - Privacy Policy</h3>
@@ -1641,7 +1655,7 @@
         </div>
 
         <div class="policy-section">
-            <h4><i class="fa-solid fa-book"></i> 3. XP Tracking & Leaderboard</h4>
+            <h4><i class="fa-solid fa-fire"></i> 3. XP Tracking & Leaderboard</h4>
             <p>To encourage continuous learning, our app tracks the time you spend actively using the app and awards you "📚 XP" points. This generates an in-app Leaderboard specific to your class, displaying only your Name, XP, and Rank.</p>
         </div>
 
@@ -1667,6 +1681,7 @@
         
         <p style="text-align: center; font-weight: bold; border-top: 1px solid var(--border-color); padding-top: 15px; margin-top:30px; color:#d4af37;">End of Privacy Policy</p>
         `;
+
         document.getElementById('massive-privacy-content').innerHTML = uniquePolicyHTML;
     }
 </script>
