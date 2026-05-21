@@ -366,7 +366,7 @@
             <i class="fa-solid fa-circle-info" style="margin-right:0;" onclick="openPage('xp-info-page')"></i>
         </div>
         <div class="sub-content">
-            <div class="lb-header">More read and more Collect 🔥 XP points .</div>
+            <div class="lb-header">More read and more Collect 📚 XP points .</div>
             <div id="leaderboard-list"></div>
         </div>
     </div>
@@ -374,9 +374,9 @@
     <div id="xp-info-page" class="sub-page">
         <div class="sub-header"><i class="fa-solid fa-arrow-left" onclick="closePage('xp-info-page')"></i><h2>XP Info</h2></div>
         <div class="sub-content" style="text-align: center; padding: 30px 15px;">
-            <h2 style="color: var(--primary-color); font-family: 'Georgia', serif; margin-bottom: 20px;">How to get 🔥 XP points ?</h2>
+            <h2 style="color: var(--primary-color); font-family: 'Georgia', serif; margin-bottom: 20px;">How to get 📚 XP points ?</h2>
             <p style="font-size: 18px; line-height: 1.6; font-family: 'Georgia', serif; color: var(--text-color);">
-                When you read or stay in the App then, you will get 🔥 XP points per minute . If you do not this your rank will be demoted .
+                When you read or stay in the App then, you will get 📚 XP points per minute . If you do not this your rank will be demoted .
             </p>
         </div>
     </div>
@@ -607,6 +607,7 @@
     <div class="drawer-overlay" onclick="toggleDrawer()"></div>
     <div id="side-drawer">
         <div class="profile-header">
+            <h2 style="font-family: 'Brush Script MT', 'Georgia', cursive; color: #D4AF37; margin-bottom: 15px; font-size: 32px; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">MS² App</h2>
             <input type="file" id="prof-pic-upload" accept="image/*" style="display:none" onchange="handleProfPic(event)">
             <div class="profile-pic-wrapper" onclick="document.getElementById('prof-pic-upload').click()">
                 <img id="drawer-pic" class="profile-pic" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
@@ -623,6 +624,17 @@
             <button onclick="upProf()" style="width:100%; padding:10px; background:#4a90e2; color:white; border:none; border-radius:5px;">Save Changes</button>
         </div>
         <div class="drawer-footer">
+            <div style="margin-bottom: 15px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+                <p style="color: #007BFF; font-weight: bold; font-size: 14px; margin-bottom: 12px; letter-spacing: 1.5px;">VISIT US</p>
+                <div style="display: flex; justify-content: center; gap: 18px; font-size: 26px;">
+                    <a href="https://www.youtube.com/@MS2_Coaching_Centre" target="_blank" style="color: #FF0000; text-decoration: none;"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://whatsapp.com/channel/0029Vb7LJAQAInPiXzopbK1C" target="_blank" style="color: #25D366; text-decoration: none;"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://instagram.com" target="_blank" style="color: #E1306C; text-decoration: none;"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank" style="color: #1877F2; text-decoration: none;"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://ms2coachingcentre.blogspot.com" target="_blank" style="color: #4b6584; text-decoration: none;"><i class="fa-solid fa-globe"></i></a>
+                </div>
+            </div>
+
             <p>App Version 11.09.20</p>
             <a onclick="openPage('contact-info-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Contact Us</a>
             <a onclick="openPage('about-us-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">About Us</a>
@@ -854,7 +866,7 @@
             d.innerHTML = `
                 <div class="lb-rank">${rankEmoji}</div>
                 <div class="lb-name">${u.name}</div>
-                <div class="lb-xp">${u.xp || 0} 🔥</div>
+                <div class="lb-xp">${u.xp || 0} 📚</div>
             `;
             l.appendChild(d);
         });
@@ -1610,7 +1622,7 @@
 
         <div class="policy-section">
             <h4><i class="fa-solid fa-fire"></i> 3. XP Tracking & Leaderboard</h4>
-            <p>To encourage continuous learning, our app tracks the time you spend actively using the app and awards you "🔥 XP" points. This generates an in-app Leaderboard specific to your class, displaying only your Name, XP, and Rank.</p>
+            <p>To encourage continuous learning, our app tracks the time you spend actively using the app and awards you "📚 XP" points. This generates an in-app Leaderboard specific to your class, displaying only your Name, XP, and Rank.</p>
         </div>
 
         <div class="policy-section">
