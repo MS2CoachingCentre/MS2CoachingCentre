@@ -33,14 +33,16 @@
         }
         #offline-banner { background-color: #ff4c4c; color: white; text-align: center; font-size: 12px; padding: 4px; display: none; z-index: 9999; }
         
-        /* Custom Alert Modal */
+        /* Custom Alert Modal Updated Styling */
         #custom-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 99999; }
         .custom-modal-box { background: var(--card-bg); padding: 25px; border-radius: 15px; width: 85%; max-width: 350px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .custom-modal-box p { color: var(--text-color); font-size: 16px; margin-bottom: 20px; font-weight: 500; }
+        .custom-modal-box p { color: var(--text-color); font-size: 16px; margin-bottom: 25px; font-weight: 500; }
         .custom-modal-btns { display: flex; justify-content: center; gap: 15px; }
-        .custom-modal-btns button { padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px; }
-        #cm-btn-no { background: #ff4c4c; color: white; display: none; }
-        #cm-btn-yes { background: #4caf50; color: white; }
+        .custom-modal-btns button { padding: 12px 25px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 15px; transition: 0.3s; }
+        #cm-btn-no { background: #e0e0e0; color: #333; display: none; }
+        #cm-btn-yes { background: var(--primary-color); color: white; }
+        [data-theme="dark"] #cm-btn-no { background: #333; color: #f0f0f0; }
+        #cm-btn-no:hover, #cm-btn-yes:hover { opacity: 0.8; }
 
         /* Login Screen */
         #login-screen, #owner-auth-screen {
@@ -87,7 +89,7 @@
         .calc-icon { background: linear-gradient(135deg, #4facfe, #00f2fe); }
         .dl-icon { background: linear-gradient(135deg, #00b09b, #96c93d); }
         .syllabus-icon { background: linear-gradient(135deg, #B224EF, #7579FF); }
-        .pdf-icon { background: linear-gradient(135deg, #20E2D7, #009FFD); } /* NCERT Books */
+        .pdf-icon { background: linear-gradient(135deg, #20E2D7, #009FFD); } 
         .pyq-icon { background: linear-gradient(135deg, #f83600, #f9d423); }
         .sol-icon { background: linear-gradient(135deg, #02aab0, #00cdac); }
 
@@ -160,7 +162,7 @@
         .profile-pic { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid white; background: #ccc; }
         .profile-pic-cam { position: absolute; bottom: 0; right: 0; background: var(--accent-color); color: #fff; width: 25px; height: 25px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 12px; border: 2px solid white; }
         
-        .drawer-footer { padding: 20px; text-align: center; font-size: 12px; border-top: 1px solid var(--border-color); }
+        .drawer-footer { padding: 20px; text-align: center; font-size: 12px; border-top: 1px solid var(--border-color); overflow-y: auto; }
         .setting-item { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .switch { position: relative; display: inline-block; width: 45px; height: 22px; }
         .switch input { opacity: 0; width: 0; height: 0; }
@@ -263,7 +265,7 @@
         <div class="logo-container">
             <h1>MS²<span>Coaching Centre</span></h1>
         </div>
-        <div class="xp-badge" onclick="openPage('leaderboard-page')"><i class="fa-solid fa-fire"></i> XP</div>
+        <div class="xp-badge" onclick="openPage('leaderboard-page')">📚 XP</div>
     </header>
 
     <div id="main-content">
@@ -607,7 +609,7 @@
     <div class="drawer-overlay" onclick="toggleDrawer()"></div>
     <div id="side-drawer">
         <div class="profile-header">
-            <h2 style="font-family: 'Brush Script MT', 'Georgia', cursive; color: #D4AF37; margin-bottom: 15px; font-size: 32px; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">MS² App</h2>
+            <h2 style="font-family: 'Brush Script MT', 'Georgia', cursive; font-size: 36px; color: var(--accent-color); margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">MS² App</h2>
             <input type="file" id="prof-pic-upload" accept="image/*" style="display:none" onchange="handleProfPic(event)">
             <div class="profile-pic-wrapper" onclick="document.getElementById('prof-pic-upload').click()">
                 <img id="drawer-pic" class="profile-pic" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
@@ -624,22 +626,21 @@
             <button onclick="upProf()" style="width:100%; padding:10px; background:#4a90e2; color:white; border:none; border-radius:5px;">Save Changes</button>
         </div>
         <div class="drawer-footer">
-            <div style="margin-bottom: 15px; border-top: 1px solid var(--border-color); padding-top: 15px;">
-                <p style="color: #007BFF; font-weight: bold; font-size: 14px; margin-bottom: 12px; letter-spacing: 1.5px;">VISIT US</p>
-                <div style="display: flex; justify-content: center; gap: 18px; font-size: 26px;">
-                    <a href="https://www.youtube.com/@MS2_Coaching_Centre" target="_blank" style="color: #FF0000; text-decoration: none;"><i class="fa-brands fa-youtube"></i></a>
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: #4a90e2; font-size: 16px; margin-bottom: 15px; font-weight: bold; letter-spacing: 1.5px;">VISIT US</h4>
+                <div style="display: flex; justify-content: center; gap: 20px; font-size: 28px;">
+                    <a href="https://www.youtube.com/@MS2_Coaching_Centre" target="_blank" style="color: #ff0000; text-decoration: none;"><i class="fa-brands fa-youtube"></i></a>
                     <a href="https://whatsapp.com/channel/0029Vb7LJAQAInPiXzopbK1C" target="_blank" style="color: #25D366; text-decoration: none;"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="https://instagram.com" target="_blank" style="color: #E1306C; text-decoration: none;"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://facebook.com" target="_blank" style="color: #1877F2; text-decoration: none;"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://ms2coachingcentre.blogspot.com" target="_blank" style="color: #4b6584; text-decoration: none;"><i class="fa-solid fa-globe"></i></a>
+                    <a href="https://www.instagram.com/ms2_coaching_centre/" target="_blank" style="color: #E1306C; text-decoration: none;"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61572137833116" target="_blank" style="color: #1877F2; text-decoration: none;"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://ms2coachingcentre.blogspot.com" target="_blank" style="color: #f39c12; text-decoration: none;"><i class="fa-solid fa-globe"></i></a>
                 </div>
             </div>
-
-            <p>App Version 11.09.20</p>
-            <a onclick="openPage('contact-info-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Contact Us</a>
-            <a onclick="openPage('about-us-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">About Us</a>
-            <a onclick="openPage('privacy-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Privacy Policy</a>
-            <p>Made with ♥️ in India</p>
+            <p style="color:gray; font-size: 12px; margin-bottom: 5px;">App Version 11.09.20</p>
+            <a onclick="openPage('contact-info-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:8px 0; font-size:14px;">Contact Us</a>
+            <a onclick="openPage('about-us-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:8px 0; font-size:14px;">About Us</a>
+            <a onclick="openPage('privacy-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:8px 0; font-size:14px;">Privacy Policy</a>
+            <p style="margin-top: 15px; font-size:12px;">Made with ♥️ in India</p>
         </div>
     </div>
 </div>
@@ -650,13 +651,33 @@
 
     let user = JSON.parse(localStorage.getItem('ms2_u'));
     let isAdmin = false, fullAdmin = false, curCls = '', exp = '', editId = null, noteEditId = null, isDeg = true;
-    let contactEditId = null; // New Contact Us state
-    
-    // Generic List States
+    let contactEditId = null; 
     let gType = '', gClass = '', gSub = '', gEditId = null; 
 
     window.tempLoginName = ''; window.tempLoginClass = '';
     let activeNotifImg = '';
+
+    // History and gesture Fix Setup
+    window.history.replaceState({page: 'home'}, "", "");
+    
+    window.addEventListener('popstate', function(e) {
+        document.getElementById('pdf-page-indicator').style.display = 'none';
+        
+        if(document.getElementById('media-viewer-page').classList.contains('open')){
+            document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+        }
+
+        document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('open'));
+        document.getElementById('side-drawer').classList.remove('open');
+        document.querySelector('.drawer-overlay').classList.remove('open');
+        
+        if(e.state && e.state.page && e.state.page !== 'home' && e.state.page !== 'drawer') {
+            document.getElementById(e.state.page).classList.add('open');
+        } else if (e.state && e.state.page === 'drawer') {
+            document.getElementById('side-drawer').classList.add('open');
+            document.querySelector('.drawer-overlay').classList.add('open');
+        }
+    });
 
     // XP Tracker
     setInterval(() => {
@@ -664,7 +685,7 @@
             user.xp = (user.xp || 0) + 1;
             upProfPicData();
         }
-    }, 60000); // 1 XP per minute
+    }, 60000); 
 
     /* CUSTOM ALERTS */
     let cmResolve = null;
@@ -699,7 +720,6 @@
 
     window.onload = () => {
         if(user) { 
-            // Re-verify admin flags if previously logged in
             if(user.name === 'owner.MS².app') {
                 isAdmin = true;
                 fullAdmin = user.fullAdmin || false;
@@ -759,7 +779,7 @@
         let allU = JSON.parse(localStorage.getItem('ms2_all_users')) || [];
         let ext = allU.findIndex(u => u.name === n);
         if(ext >= 0) {
-            user.xp = allU[ext].xp || 0; // Preserve XP on re-login
+            user.xp = allU[ext].xp || 0; 
             allU[ext] = user; 
         } else {
             allU.push(user);
@@ -794,11 +814,6 @@
         el.classList.add('active');
         if(t === 'special') rendPhotos(); 
         if(t === 'special') rendNotes();
-    }
-
-    function toggleDrawer() {
-        document.getElementById('side-drawer').classList.toggle('open');
-        document.querySelector('.drawer-overlay').classList.toggle('open');
     }
 
     function handleProfPic(e) {
@@ -836,11 +851,36 @@
         setup(); toggleDrawer(); cAlert("Saved!");
     }
 
+    // Handled Page Routing
     function openPage(p) { 
         document.getElementById(p).classList.add('open'); 
+        window.history.pushState({page: p}, "", "#" + p);
         if(p === 'leaderboard-page') rendLeaderboard();
     }
-    function closePage(p) { document.getElementById(p).classList.remove('open'); }
+    
+    function closePage(p) { 
+        if(window.location.hash === "#" + p) {
+            window.history.back();
+        } else {
+            document.getElementById(p).classList.remove('open'); 
+        }
+    }
+
+    function toggleDrawer() {
+        const drawer = document.getElementById('side-drawer');
+        if(drawer.classList.contains('open')) {
+            if(window.location.hash === "#drawer") {
+                window.history.back();
+            } else {
+                drawer.classList.remove('open');
+                document.querySelector('.drawer-overlay').classList.remove('open');
+            }
+        } else {
+            window.history.pushState({page: 'drawer'}, "", "#drawer");
+            drawer.classList.add('open');
+            document.querySelector('.drawer-overlay').classList.add('open');
+        }
+    }
 
     /* LEADERBOARD & XP */
     function rendLeaderboard() {
@@ -1143,7 +1183,7 @@
     function enableBulkMode(id) {
         bulkMode = true;
         document.getElementById('bulk-del-btn').style.display = 'block';
-        rendDownloads(); // re-render to show checkboxes
+        rendDownloads(); 
         let cb = document.getElementById('cb-' + id);
         if(cb) cb.checked = true;
     }
@@ -1478,7 +1518,6 @@
                     });
                 }
 
-                // Scroll Listener for Page Indicator
                 container.onscroll = function() {
                     let canvases = document.querySelectorAll('.pdf-page-canvas');
                     if(canvases.length > 0) {
@@ -1502,6 +1541,7 @@
 
     function closeMediaViewer() {
         document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+        document.getElementById('pdf-page-indicator').style.display = 'none'; // Fixed bug here
         closePage('media-viewer-page');
     }
 
@@ -1621,7 +1661,7 @@
         </div>
 
         <div class="policy-section">
-            <h4><i class="fa-solid fa-fire"></i> 3. XP Tracking & Leaderboard</h4>
+            <h4><i class="fa-solid fa-book"></i> 3. XP Tracking & Leaderboard</h4>
             <p>To encourage continuous learning, our app tracks the time you spend actively using the app and awards you "📚 XP" points. This generates an in-app Leaderboard specific to your class, displaying only your Name, XP, and Rank.</p>
         </div>
 
