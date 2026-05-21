@@ -33,16 +33,14 @@
         }
         #offline-banner { background-color: #ff4c4c; color: white; text-align: center; font-size: 12px; padding: 4px; display: none; z-index: 9999; }
         
-        /* Custom Alert Modal Updated Styling */
+        /* Custom Alert Modal - Swapped Colors as Requested */
         #custom-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 99999; }
         .custom-modal-box { background: var(--card-bg); padding: 25px; border-radius: 15px; width: 85%; max-width: 350px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .custom-modal-box p { color: var(--text-color); font-size: 16px; margin-bottom: 25px; font-weight: 500; }
-        .custom-modal-btns { display: flex; justify-content: center; gap: 15px; }
-        .custom-modal-btns button { padding: 12px 25px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 15px; transition: 0.3s; }
-        #cm-btn-no { background: #e0e0e0; color: #333; display: none; }
-        #cm-btn-yes { background: var(--primary-color); color: white; }
-        [data-theme="dark"] #cm-btn-no { background: #333; color: #f0f0f0; }
-        #cm-btn-no:hover, #cm-btn-yes:hover { opacity: 0.8; }
+        .custom-modal-box p { color: var(--text-color); font-size: 16px; margin-bottom: 20px; font-weight: 500; }
+        .custom-modal-boxes-btns { display: flex; justify-content: center; gap: 15px; }
+        .custom-modal-boxes-btns button { padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px; }
+        #cm-btn-no { background: #4caf50; color: white; display: none; } /* Cancel is now Green */
+        #cm-btn-yes { background: #ff4c4c; color: white; } /* OK is now Red */
 
         /* Login Screen */
         #login-screen, #owner-auth-screen {
@@ -157,12 +155,24 @@
         #side-drawer.open { left: 0; }
         .drawer-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1999; display: none; }
         .drawer-overlay.open { display: block; }
-        .profile-header { padding: 30px 20px; background: #2b3a4a; color: white; text-align: center; position: relative; }
-        .profile-pic-wrapper { position: relative; display: inline-block; cursor: pointer; }
+        
+        .profile-header { padding: 25px 20px; background: #2b3a4a; color: white; text-align: center; position: relative; }
+        .profile-pic-wrapper { position: relative; display: inline-block; cursor: pointer; margin-bottom: 8px; }
         .profile-pic { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid white; background: #ccc; }
         .profile-pic-cam { position: absolute; bottom: 0; right: 0; background: var(--accent-color); color: #fff; width: 25px; height: 25px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 12px; border: 2px solid white; }
-        
-        .drawer-footer { padding: 20px; text-align: center; font-size: 12px; border-top: 1px solid var(--border-color); overflow-y: auto; }
+        .profile-header h2.stylish-logo { font-family: 'Georgia', serif; font-style: italic; font-weight: 900; letter-spacing: 1px; color: #FFDF00; margin-bottom: 10px; font-size: 24px; text-shadow: 2px 2px 4px rgba(0,0,0,0.4); }
+
+        .drawer-footer { padding: 15px; text-align: center; font-size: 12px; border-top: 1px solid var(--border-color); }
+        .social-visit-title { color: #4a90e2; font-weight: bold; font-size: 14px; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+        .social-icons-row { display: flex; justify-content: center; gap: 14px; margin-bottom: 12px; font-size: 22px; }
+        .social-icons-row a { cursor: pointer; transition: transform 0.2s; }
+        .social-icons-row a:active { transform: scale(0.85); }
+        .social-icons-row .fa-youtube { color: #ff0000; }
+        .social-icons-row .fa-whatsapp { color: #25d366; }
+        .social-icons-row .fa-instagram { color: #e1306c; }
+        .social-icons-row .fa-facebook { color: #1877f2; }
+        .social-icons-row .fa-globe { color: #009ffd; }
+
         .setting-item { background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .switch { position: relative; display: inline-block; width: 45px; height: 22px; }
         .switch input { opacity: 0; width: 0; height: 0; }
@@ -205,8 +215,6 @@
         .user-list-pic { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; background: #eee; }
         
         .hide { display: none !important; }
-
-        /* Drag Over Highlight */
         .drag-over { border: 2px dashed #d4af37 !important; opacity: 0.6; }
 
         /* Contact Us New Styling */
@@ -225,7 +233,7 @@
 <div id="custom-modal-overlay">
     <div class="custom-modal-box">
         <p id="custom-modal-msg">Message goes here</p>
-        <div class="custom-modal-btns">
+        <div class="custom-modal-boxes-btns">
             <button id="cm-btn-no" onclick="cmCallback(false)">Cancel</button>
             <button id="cm-btn-yes" onclick="cmCallback(true)">OK</button>
         </div>
@@ -265,7 +273,7 @@
         <div class="logo-container">
             <h1>MS²<span>Coaching Centre</span></h1>
         </div>
-        <div class="xp-badge" onclick="openPage('leaderboard-page')">📚 XP</div>
+        <div class="xp-badge" onclick="openPage('leaderboard-page')"><i class="fa-solid fa-book"></i> XP</div>
     </header>
 
     <div id="main-content">
@@ -609,13 +617,14 @@
     <div class="drawer-overlay" onclick="toggleDrawer()"></div>
     <div id="side-drawer">
         <div class="profile-header">
-            <h2 style="font-family: 'Brush Script MT', 'Georgia', cursive; font-size: 36px; color: var(--accent-color); margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">MS² App</h2>
             <input type="file" id="prof-pic-upload" accept="image/*" style="display:none" onchange="handleProfPic(event)">
             <div class="profile-pic-wrapper" onclick="document.getElementById('prof-pic-upload').click()">
                 <img id="drawer-pic" class="profile-pic" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
                 <div class="profile-pic-cam"><i class="fa-solid fa-camera"></i></div>
             </div>
-            <h3 id="p-name" style="margin-top:10px;">Student Name</h3>
+            <!-- Added Profile Image Context and Stylish Text Header directly inside profile header -->
+            <h2 class="stylish-logo">MS² App</h2>
+            <h3 id="p-name">Student Name</h3>
             <p id="p-class">Class</p>
         </div>
         <div style="padding:20px; flex:1">
@@ -626,21 +635,21 @@
             <button onclick="upProf()" style="width:100%; padding:10px; background:#4a90e2; color:white; border:none; border-radius:5px;">Save Changes</button>
         </div>
         <div class="drawer-footer">
-            <div style="margin-bottom: 25px;">
-                <h4 style="color: #4a90e2; font-size: 16px; margin-bottom: 15px; font-weight: bold; letter-spacing: 1.5px;">VISIT US</h4>
-                <div style="display: flex; justify-content: center; gap: 20px; font-size: 28px;">
-                    <a href="https://www.youtube.com/@MS2_Coaching_Centre" target="_blank" style="color: #ff0000; text-decoration: none;"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://whatsapp.com/channel/0029Vb7LJAQAInPiXzopbK1C" target="_blank" style="color: #25D366; text-decoration: none;"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="https://www.instagram.com/ms2_coaching_centre/" target="_blank" style="color: #E1306C; text-decoration: none;"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61572137833116" target="_blank" style="color: #1877F2; text-decoration: none;"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://ms2coachingcentre.blogspot.com" target="_blank" style="color: #f39c12; text-decoration: none;"><i class="fa-solid fa-globe"></i></a>
-                </div>
+            <!-- Social VISIT US Area with App Intents and Fallbacks -->
+            <span class="social-visit-title">VISIT US</span>
+            <div class="social-icons-row">
+                <a onclick="handleSocialLink('intent://www.youtube.com/@MS2_Coaching_Centre#Intent;package=com.google.android.youtube;scheme=https;end', 'https://www.youtube.com/@MS2_Coaching_Centre')"><i class="fa-brands fa-youtube"></i></a>
+                <a onclick="handleSocialLink('whatsapp://chat?code=0029Vb7LJAQAInPiXzopbK1C', 'https://whatsapp.com/channel/0029Vb7LJAQAInPiXzopbK1C')"><i class="fa-brands fa-whatsapp"></i></a>
+                <a onclick="handleSocialLink('instagram://user?username=ms2_coaching_centre', 'https://www.instagram.com/ms2_coaching_centre/')"><i class="fa-brands fa-instagram"></i></a>
+                <a onclick="handleSocialLink('fb://facewebmodal/f?href=https://www.facebook.com/profile.php?id=61572137833116', 'https://www.facebook.com/profile.php?id=61572137833116')"><i class="fa-brands fa-facebook"></i></a>
+                <a onclick="handleSocialLink('https://ms2coachingcentre.blogspot.com', 'https://ms2coachingcentre.blogspot.com')"><i class="fa-solid fa-globe"></i></a>
             </div>
-            <p style="color:gray; font-size: 12px; margin-bottom: 5px;">App Version 11.09.20</p>
-            <a onclick="openPage('contact-info-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:8px 0; font-size:14px;">Contact Us</a>
-            <a onclick="openPage('about-us-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:8px 0; font-size:14px;">About Us</a>
-            <a onclick="openPage('privacy-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:8px 0; font-size:14px;">Privacy Policy</a>
-            <p style="margin-top: 15px; font-size:12px;">Made with ♥️ in India</p>
+            
+            <p>App Version 11.09.20</p>
+            <a onclick="openPage('contact-info-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Contact Us</a>
+            <a onclick="openPage('about-us-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">About Us</a>
+            <a onclick="openPage('privacy-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Privacy Policy</a>
+            <p>Made with ♥️ in India</p>
         </div>
     </div>
 </div>
@@ -652,42 +661,65 @@
     let user = JSON.parse(localStorage.getItem('ms2_u'));
     let isAdmin = false, fullAdmin = false, curCls = '', exp = '', editId = null, noteEditId = null, isDeg = true;
     let contactEditId = null; 
+    
+    // Generic List States
     let gType = '', gClass = '', gSub = '', gEditId = null; 
 
     window.tempLoginName = ''; window.tempLoginClass = '';
     let activeNotifImg = '';
 
-    // History and gesture Fix Setup
-    window.history.replaceState({page: 'home'}, "", "");
-    
-    window.addEventListener('popstate', function(e) {
-        document.getElementById('pdf-page-indicator').style.display = 'none';
-        
-        if(document.getElementById('media-viewer-page').classList.contains('open')){
-            document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-        }
-
-        document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('open'));
-        document.getElementById('side-drawer').classList.remove('open');
-        document.querySelector('.drawer-overlay').classList.remove('open');
-        
-        if(e.state && e.state.page && e.state.page !== 'home' && e.state.page !== 'drawer') {
-            document.getElementById(e.state.page).classList.add('open');
-        } else if (e.state && e.state.page === 'drawer') {
-            document.getElementById('side-drawer').classList.add('open');
-            document.querySelector('.drawer-overlay').classList.add('open');
-        }
-    });
-
-    // XP Tracker
+    // XP Tracker (🔥 Changed to 📚)
     setInterval(() => {
         if(user && user.name !== 'owner.MS².app') {
             user.xp = (user.xp || 0) + 1;
             upProfPicData();
         }
-    }, 60000); 
+    }, 60000); // 1 XP per minute
 
-    /* CUSTOM ALERTS */
+    /* GESTURE BACK BUTTON INTERCEPTION FOR PHONES */
+    // Keeps track of virtual navigation history state inside application context
+    function applyHistoryState() {
+        history.pushState({appPage: "subview"}, [htmlMatches="MS2App"]);
+    }
+    
+    window.addEventListener('popstate', function (event) {
+        // Intercepts the back gesture button on phone
+        let openSubpage = document.querySelector('.sub-page.open');
+        let drawer = document.getElementById('side-drawer');
+        let modal = document.getElementById('custom-modal-overlay');
+        
+        if (modal && modal.style.display === 'flex') {
+            document.getElementById('custom-modal-overlay').style.display = 'none';
+            if(cmResolve) { cmResolve(false); cmResolve = null; }
+            applyHistoryState();
+        } else if (openSubpage) {
+            // Close whatever viewer or nested subpage is currently active
+            if(openSubpage.id === 'media-viewer-page') {
+                closeMediaViewer();
+            } else {
+                openSubpage.classList.remove('open');
+            }
+            applyHistoryState();
+        } else if (drawer && drawer.classList.contains('open')) {
+            toggleDrawer();
+            applyHistoryState();
+        } else {
+            // If completely at root homepage context, let it pop out to system home via center button defaults or fallback
+        }
+    });
+
+    /* DEEP LINK HANDLER WITH NATIVE SMARTPHONE APPLICATION DETECTOR */
+    function handleSocialLink(appUrl, webUrl) {
+        let start = Date.now();
+        window.location.href = appUrl;
+        setTimeout(function() {
+            if (Date.now() - start < 1500) {
+                window.open(webUrl, '_blank');
+            }
+        }, 1000);
+    }
+
+    /* CUSTOM ALERTS - Modified colors for confirmation button hierarchy safely */
     let cmResolve = null;
     function cAlert(msg) {
         document.getElementById('custom-modal-msg').innerText = msg;
@@ -719,6 +751,7 @@
     }
 
     window.onload = () => {
+        applyHistoryState();
         if(user) { 
             if(user.name === 'owner.MS².app') {
                 isAdmin = true;
@@ -816,6 +849,12 @@
         if(t === 'special') rendNotes();
     }
 
+    function toggleDrawer() {
+        document.getElementById('side-drawer').classList.toggle('open');
+        document.querySelector('.drawer-overlay').classList.toggle('open');
+        applyHistoryState();
+    }
+
     function handleProfPic(e) {
         const file = e.target.files[0];
         if(!file) return;
@@ -851,36 +890,12 @@
         setup(); toggleDrawer(); cAlert("Saved!");
     }
 
-    // Handled Page Routing
     function openPage(p) { 
         document.getElementById(p).classList.add('open'); 
-        window.history.pushState({page: p}, "", "#" + p);
         if(p === 'leaderboard-page') rendLeaderboard();
+        applyHistoryState();
     }
-    
-    function closePage(p) { 
-        if(window.location.hash === "#" + p) {
-            window.history.back();
-        } else {
-            document.getElementById(p).classList.remove('open'); 
-        }
-    }
-
-    function toggleDrawer() {
-        const drawer = document.getElementById('side-drawer');
-        if(drawer.classList.contains('open')) {
-            if(window.location.hash === "#drawer") {
-                window.history.back();
-            } else {
-                drawer.classList.remove('open');
-                document.querySelector('.drawer-overlay').classList.remove('open');
-            }
-        } else {
-            window.history.pushState({page: 'drawer'}, "", "#drawer");
-            drawer.classList.add('open');
-            document.querySelector('.drawer-overlay').classList.add('open');
-        }
-    }
+    function closePage(p) { document.getElementById(p).classList.remove('open'); }
 
     /* LEADERBOARD & XP */
     function rendLeaderboard() {
@@ -936,7 +951,7 @@
         openPage('user-detail-page');
     }
 
-    /* CONTACT US LOGIC (NEW) */
+    /* CONTACT US LOGIC */
     function openContactPage() {
         document.getElementById('admin-contact-area').style.display = isAdmin ? 'block' : 'none';
         contactEditId = null;
@@ -1120,29 +1135,7 @@
         openPage('notif-detail-page');
     }
 
-    function editNotif(id, msg, imgStr) { 
-        editId = id; 
-        document.getElementById('admin-msg').value = msg;
-        if(imgStr) {
-            activeNotifImg = imgStr;
-            document.getElementById('notif-img-preview').src = imgStr;
-            document.getElementById('notif-img-preview').style.display = 'block';
-            document.getElementById('notif-img-clear').style.display = 'block';
-        } else {
-            clearNotifImg();
-        }
-        document.getElementById('publish-btn').innerText = "Update"; 
-    }
-    
-    async function delNotif(id) { 
-        if(await cConfirm("Delete this notification?")) { 
-            let all = JSON.parse(localStorage.getItem('ms2_ns')).filter(x => x.id !== id); 
-            localStorage.setItem('ms2_ns', JSON.stringify(all)); 
-            rendNotif(); 
-        } 
-    }
-
-    /* IN-APP DOWNLOAD LOGIC + MULTI DELETE */
+    /* IN-APP DOWNLOAD LOGIC */
     function downloadAppFile(id, originalType) {
         let sourceKey = `ms2_${originalType}s`; 
         let sourceArr = JSON.parse(localStorage.getItem(sourceKey));
@@ -1252,8 +1245,29 @@
         }
     }
 
+    function editNotif(id, msg, imgStr) { 
+        editId = id; 
+        document.getElementById('admin-msg').value = msg;
+        if(imgStr) {
+            activeNotifImg = imgStr;
+            document.getElementById('notif-img-preview').src = imgStr;
+            document.getElementById('notif-img-preview').style.display = 'block';
+            document.getElementById('notif-img-clear').style.display = 'block';
+        } else {
+            clearNotifImg();
+        }
+        document.getElementById('publish-btn').innerText = "Update"; 
+    }
+    
+    async function delNotif(id) { 
+        if(await cConfirm("Delete this notification?")) { 
+            let all = JSON.parse(localStorage.getItem('ms2_ns')).filter(x => x.id !== id); 
+            localStorage.setItem('ms2_ns', JSON.stringify(all)); 
+            rendNotif(); 
+        } 
+    }
 
-    /* UNIVERSAL MEDIA (NCERT, PYQs, Syllabus, Solutions) */
+    /* UNIVERSAL MEDIA */
     function openNcertClassPage() { gType = 'ncert'; document.getElementById('g-class-title').innerText = "NCERT Books - Class"; openPage('generic-class-page'); }
     function openSyllabusClassPage() { gType = 'syl'; document.getElementById('g-class-title').innerText = "Syllabus - Class"; openPage('generic-class-page'); }
     function openPyqClassPage() { gType = 'pyq'; document.getElementById('g-class-title').innerText = "PYQs - Class"; openPage('generic-class-page'); }
@@ -1348,7 +1362,6 @@
         }
     }
 
-    // PDF REORDERING LOGIC
     function swapGArray(idx1, idx2) {
         let storageKey = `ms2_${gType}s`;
         let items = JSON.parse(localStorage.getItem(storageKey)) || [];
@@ -1481,7 +1494,7 @@
         });
     }
 
-    /* PERFECT IN-APP MEDIA VIEWER LOGIC (Zero Margin PDF) */
+    /* PERFECT IN-APP MEDIA VIEWER LOGIC */
     function viewMedia(dataUrl, type) {
         document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
         
@@ -1539,9 +1552,10 @@
         openPage('media-viewer-page');
     }
 
+    // STRICT FIX: Cleanly removes indicator overlay context upon active termination of PDF session
     function closeMediaViewer() {
         document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-        document.getElementById('pdf-page-indicator').style.display = 'none'; // Fixed bug here
+        document.getElementById('pdf-page-indicator').style.display = 'none';
         closePage('media-viewer-page');
     }
 
@@ -1623,10 +1637,9 @@
     function toggleTheme() { localStorage.setItem('ms2_d', document.getElementById('theme-toggle').checked ? '1' : '0'); applyT(); }
     function changeLanguage() { const l = document.getElementById('lang-select').value; document.querySelectorAll('.lang-text').forEach(x => x.innerText = x.getAttribute('data-' + l)); }
 
-    /* SECURE & FIXED DELETE ACCOUNT */
+    /* DELETE ACCOUNT WIPE */
     async function deleteAccount() {
         if(await cConfirm("DANGER: This will permanently delete your Name, Class, and all Saved Data from this device. Are you sure?")) {
-            
             let allU = JSON.parse(localStorage.getItem('ms2_all_users')) || [];
             allU = allU.filter(u => u.name !== user.name);
             localStorage.setItem('ms2_all_users', JSON.stringify(allU));
@@ -1644,7 +1657,7 @@
         }
     }
 
-    /* UNIQUE & MASSIVE PRIVACY POLICY GENERATOR */
+    /* PRIVACY POLICY */
     function generateMassivePolicy() {
         const uniquePolicyHTML = `
         <h3 class="policy-title">MS² Coaching Centre - Privacy Policy</h3>
@@ -1687,7 +1700,6 @@
         
         <p style="text-align: center; font-weight: bold; border-top: 1px solid var(--border-color); padding-top: 15px; margin-top:30px; color:#d4af37;">End of Privacy Policy</p>
         `;
-
         document.getElementById('massive-privacy-content').innerHTML = uniquePolicyHTML;
     }
 </script>
