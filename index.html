@@ -188,7 +188,7 @@
         .pinned-note { border-left: 4px solid #d4af37 !important; background: rgba(212, 175, 55, 0.05); }
         .history-item { border-bottom: 1px solid var(--border-color); padding: 10px 0; font-size: 14px; text-align: right; }
 
-        /* Privacy Policy & About Us */
+        /* Privacy Policy & About Us & TOS */
         .policy-container { text-align: justify; font-size: 14px; line-height: 1.8; padding-bottom: 50px; color: var(--text-color); }
         .policy-container .policy-title { text-align: center; color: var(--primary-color); margin-bottom: 20px; font-size: 24px; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 2px solid #d4af37; padding-bottom: 10px; display: inline-block; width: 100%;}
         .policy-container .policy-section { background: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-left: 5px solid var(--primary-color); }
@@ -608,6 +608,85 @@
         </div>
     </div>
 
+    <!-- New Terms of Service Page -->
+    <div id="tos-page" class="sub-page">
+        <div class="sub-header"><i class="fa-solid fa-arrow-left" onclick="closePage('tos-page')"></i><h2>Terms of Service</h2></div>
+        <div class="sub-content policy-container">
+            <h3 class="policy-title">Terms of Service</h3>
+            
+            <h4>1. Acceptance of Terms</h4>
+            <p>By downloading, installing, or using the MS² Coaching Centre Application, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you must immediately cease using the application and delete it from your device.</p>
+            
+            <h4>2. Description of Service</h4>
+            <p>MS² Coaching Centre provides an integrated educational platform offering features including, but not limited to:</p>
+            <ul>
+                <li><b>Study Tools :</b> Notepad, Calculator, Camera Pad, and Formula Sheets.</li>
+                <li><b>Content :</b> NCERT Books, Previous Year Questions (PYQs), Solutions, and MCQs.</li>
+                <li><b>Gamification :</b> XP (Experience Points) tracking and Class-based Leaderboards.</li>
+                <li><b>Offline Access :</b> Cached PDFs and locally stored study materials.</li>
+            </ul>
+            
+            <h4>3. User Accounts & Eligibility</h4>
+            <ul>
+                <li><b>Registration :</b> Users must provide accurate information (Name, Class) to access class-specific leaderboards and content.</li>
+                <li><b>Responsibility :</b> You are responsible for maintaining the security of your device. Since data is stored locally, MS² Coaching Centre is not responsible for data loss due to device damage or unauthorized physical access to your phone.</li>
+            </ul>
+            
+            <h4>4. Local Storage & Data Privacy</h4>
+            <p>As per our Local Storage Architecture:</p>
+            <ul>
+                <li>All personal creations (Notes, Calculator History, Camera Pad images) are stored only on your device.</li>
+                <li>The App Administrator does not have access to your private notes or images.</li>
+                <li><b>Risk of Loss :</b> If you clear your app data or uninstall the app without a manual backup, your locally stored information will be permanently lost.</li>
+            </ul>
+            
+            <h4>5. XP System & Leaderboard Conduct</h4>
+            <ul>
+                <li><b>XP Generation :</b> XP is awarded based on active learning time. Any attempt to manipulate XP through technical exploits or third-party tools is strictly prohibited.</li>
+                <li><b>Visibility :</b> By participating, you agree that your Name, Rank, and XP will be visible to other students in your specific class category.</li>
+            </ul>
+            
+            <h4>6. Intellectual Property Rights</h4>
+            <ul>
+                <li><b>App Content :</b> All structured courses, expert notes, study tips, and specially crafted materials are the intellectual property of MS² Coaching Centre (founded 2016).</li>
+                <li><b>Usage License :</b> Users are granted a personal, non-transferable, and non-exclusive license to use the materials for personal educational purposes only. Redistribution, resale, or commercial use of MS² study materials is strictly forbidden.</li>
+                <li><b>Third-Party Content :</b> NCERT books and official solutions provided are used for educational facilitation under fair use guidelines.</li>
+            </ul>
+            
+            <h4>7. Prohibited Uses</h4>
+            <p>Users agree not to :</p>
+            <ul>
+                <li>Use the Camera Pad or Notepad for storing illegal or inappropriate content.</li>
+                <li>Attempt to decompile, reverse engineer, or bypass the security of the application.</li>
+                <li>Use the app for any purpose that violates the "Safe Educational Environment" maintained by the Administrator.</li>
+            </ul>
+            
+            <h4>8. Limitation of Liability</h4>
+            <ul>
+                <li>MS² Coaching Centre aims for "Academic Excellence," but we do not guarantee specific exam results or scores.</li>
+                <li>The app is provided on an "AS IS" and "AS AVAILABLE" basis. We are not liable for any temporary technical glitches or interruptions in service.</li>
+            </ul>
+            
+            <h4>9. Account Deletion & Termination</h4>
+            <ul>
+                <li>You may delete your account at any time via the Settings menu.</li>
+                <li>Upon deletion, all profile details, XP, and downloaded files will be wiped from the local storage. This action is irreversible.</li>
+            </ul>
+            
+            <h4>10. Modifications to Terms</h4>
+            <p>MS² Coaching Centre reserves the right to update these Terms at any time. Significant changes will be communicated via Push Notifications through the app. Continued use of the app after such changes constitutes acceptance of the new terms.</p>
+            
+            <h4>11. Contact Information</h4>
+            <p>For any legal inquiries, technical support, or feedback, please contact :</p>
+            <ul>
+                <li><b>Entity :</b> MS² Coaching Centre</li>
+                <li><b>Email :</b> support.ms2.app@gmail.com</li>
+                <li><b>Support Hours :</b> 24x7 Technical Support; 24-48 hours response time for inquiries.</li>
+            </ul>
+            <p style="text-align:center; font-weight:bold; color:var(--primary-color); font-style:italic;">"Empowering Students, Shaping Futures – Since 2016"</p>
+        </div>
+    </div>
+
     <div class="bottom-nav">
         <div class="nav-item active" onclick="swTab('notif', this)"><i class="fa-regular fa-bell"></i><span>Notifications</span></div>
         <div class="nav-item special-nav-wrapper" onclick="swTab('special', this)"><div class="special-nav"><i class="fa-solid fa-star"></i><span style="font-size:9px">Features</span></div></div>
@@ -617,13 +696,13 @@
     <div class="drawer-overlay" onclick="toggleDrawer()"></div>
     <div id="side-drawer">
         <div class="profile-header">
+            <!-- Added Profile Image Context and Stylish Text Header directly inside profile header -->
+            <h2 class="stylish-logo">MS² App</h2>
             <input type="file" id="prof-pic-upload" accept="image/*" style="display:none" onchange="handleProfPic(event)">
             <div class="profile-pic-wrapper" onclick="document.getElementById('prof-pic-upload').click()">
                 <img id="drawer-pic" class="profile-pic" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
                 <div class="profile-pic-cam"><i class="fa-solid fa-camera"></i></div>
             </div>
-            <!-- Added Profile Image Context and Stylish Text Header directly inside profile header -->
-            <h2 class="stylish-logo">MS² App</h2>
             <h3 id="p-name">Student Name</h3>
             <p id="p-class">Class</p>
         </div>
@@ -646,9 +725,10 @@
             </div>
             
             <p>App Version 11.09.20</p>
-            <a onclick="openPage('contact-info-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Contact Us</a>
             <a onclick="openPage('about-us-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">About Us</a>
+            <a onclick="openPage('contact-info-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Contact Us</a>
             <a onclick="openPage('privacy-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Privacy Policy</a>
+            <a onclick="openPage('tos-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Terms of Service</a>
             <p>Made with ♥️ in India</p>
         </div>
     </div>
@@ -1621,40 +1701,44 @@
         if(nts.length === 0) { l.innerHTML = '<div class="empty-state">No Content !</div>'; return; }
 
         nts.sort((a, b) => (b.pinned - a.pinned) || (b.id - a.id));
+
         nts.forEach(n => {
             const d = document.createElement('div'); d.className = 'noti-card' + (n.pinned ? ' pinned-note' : '');
-            d.innerHTML = `<p>${n.txt}</p><span class="noti-time">Saved: ${n.time}</span><div class="note-controls"><i class="fa-solid fa-thumbtack" style="color:${n.pinned ? '#d4af37' : '#ccc'}" onclick="togglePin(${n.id})"></i><i class="fa-solid fa-pen-to-square" onclick="openNoteEditor(${n.id}, '${n.txt.replace(/'/g, "\\'")}')"></i><i class="fa-solid fa-trash" style="color:red" onclick="delN(${n.id})"></i></div>`;
+            d.innerHTML = `
+                <div style="font-size:14px; margin-bottom:5px; white-space:pre-wrap; color:var(--text-color);">${n.txt}</div>
+                <div class="noti-time">${n.time}</div>
+                <div class="note-controls">
+                    <i class="fa-solid fa-thumbtack" style="color:${n.pinned?'#d4af37':'#ccc'}" onclick="togglePin(${n.id})"></i>
+                    <i class="fa-solid fa-pen-to-square" style="color:#4caf50" onclick="openNoteEditor(${n.id}, '${n.txt.replace(/'/g, "\\'")}')"></i>
+                    <i class="fa-solid fa-trash" style="color:red" onclick="delNote(${n.id})"></i>
+                </div>
+            `;
             l.appendChild(d);
         });
     }
-    async function delN(id) { if(await cConfirm("Delete note?")) { let nts = JSON.parse(localStorage.getItem('ms2_nts')).filter(x => x.id !== id); localStorage.setItem('ms2_nts', JSON.stringify(nts)); rendNotes(); } }
+    async function delNote(id) { if(await cConfirm("Delete this Note?")) { let nts = JSON.parse(localStorage.getItem('ms2_nts')).filter(x => x.id !== id); localStorage.setItem('ms2_nts', JSON.stringify(nts)); rendNotes(); } }
 
-    /* SETTINGS & THEME */
-    function applyT() {
-        const d = localStorage.getItem('ms2_d') === '1'; document.getElementById('theme-toggle').checked = d;
-        if(d) document.body.setAttribute('data-theme', 'dark'); else document.body.removeAttribute('data-theme');
-    }
-    function toggleTheme() { localStorage.setItem('ms2_d', document.getElementById('theme-toggle').checked ? '1' : '0'); applyT(); }
-    function changeLanguage() { const l = document.getElementById('lang-select').value; document.querySelectorAll('.lang-text').forEach(x => x.innerText = x.getAttribute('data-' + l)); }
-
-    /* DELETE ACCOUNT WIPE */
+    /* Delete Account */
     async function deleteAccount() {
-        if(await cConfirm("DANGER: This will permanently delete your Name, Class, and all Saved Data from this device. Are you sure?")) {
-            let allU = JSON.parse(localStorage.getItem('ms2_all_users')) || [];
-            allU = allU.filter(u => u.name !== user.name);
-            localStorage.setItem('ms2_all_users', JSON.stringify(allU));
-
-            localStorage.removeItem('ms2_u');
-            localStorage.removeItem('ms2_nts');
-            localStorage.removeItem('ms2_calc_h');
-            localStorage.removeItem('ms2_photos');
-            localStorage.removeItem('ms2_downloads');
-            
-            cAlert("Account data successfully wiped.");
-            setTimeout(() => {
-                window.location.replace(window.location.href);
-            }, 1000);
+        if(await cConfirm("WARNING: This will permanently delete your account, notes, history, and downloads. Are you sure?")) {
+            localStorage.clear();
+            location.reload();
         }
+    }
+
+    /* THEME & LANGUAGE */
+    function toggleTheme() {
+        if(document.getElementById('theme-toggle').checked) { document.documentElement.setAttribute('data-theme', 'dark'); localStorage.setItem('ms2_theme', 'dark'); }
+        else { document.documentElement.removeAttribute('data-theme'); localStorage.setItem('ms2_theme', 'light'); }
+    }
+    function applyT() {
+        if(localStorage.getItem('ms2_theme') === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); document.getElementById('theme-toggle').checked = true; }
+        if(localStorage.getItem('ms2_lang')) { document.getElementById('lang-select').value = localStorage.getItem('ms2_lang'); changeLanguage(); }
+    }
+    function changeLanguage() {
+        const lang = document.getElementById('lang-select').value;
+        localStorage.setItem('ms2_lang', lang);
+        document.querySelectorAll('.lang-text').forEach(el => { el.innerText = el.getAttribute('data-' + lang) || el.getAttribute('data-en'); });
     }
 
     /* PRIVACY POLICY */
