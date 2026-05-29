@@ -503,7 +503,7 @@
             <input type="text" id="camera-name-input" placeholder="Enter Image Name..." style="width:100%; padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-color);">
             
             <button class="action-btn" style="background: #ff0844;" onclick="document.getElementById('camera-file-input').click()"><i class="fa-solid fa-camera"></i> Add Camera Pad 📸</button>
-            <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display:none" onchange="handleCameraUpload(event)">
+            <input type="file" id="camera-file-input" accept="image/*" capture="camera" style="display:none" onchange="handleCameraUpload(event)">
             <div id="camera-list-container"></div>
         </div>
     </div>
@@ -1673,7 +1673,7 @@
                         renderContainer.appendChild(canvas);
                         
                         /* Modifed: High resolution rendering for sharp zoom */
-                        const scale = 6.0; 
+                        const scale = 4.0; 
                         const viewport = page.getViewport({scale: scale});
                         canvas.height = viewport.height;
                         canvas.width = viewport.width;
