@@ -367,7 +367,7 @@
                 </button>
             </div>
 
-            <button onclick="deleteAccount()" style="width:100%; background:red; color:white; border:none; padding:15px; border-radius:10px; font-weight:bold; margin-top:20px; cursor:pointer;">⚠️ Permanently Delete Account</button>
+            <button onclick="deleteAccount()" style="width:100%; background:red; color:white; border:none; padding:15px; border-radius:10px; font-weight:bold; margin-top:20px; cursor:pointer;">Permanently Delete Account</button>
         </div>
     </div>
 
@@ -497,7 +497,7 @@
             <input type="text" id="camera-name-input" placeholder="Enter Image Name..." style="width:100%; padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-color);">
             
             <button class="action-btn" style="background: #ff0844;" onclick="document.getElementById('camera-file-input').click()"><i class="fa-solid fa-camera"></i> Add Camera Pad 📸</button>
-            <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display:none" onchange="handleCameraUpload(event)">
+            <input type="file" id="camera-file-input" accept="image/*" capture="camera" style="display:none" onchange="handleCameraUpload(event)">
             <div id="camera-list-container"></div>
         </div>
     </div>
@@ -1629,10 +1629,16 @@
                         const canvas = document.createElement('canvas');
                         canvas.className = 'pdf-page-canvas';
                         renderContainer.appendChild(canvas);
-                        const scale = 2.0; 
+                        
+                        /* Modifed: High resolution rendering for sharp zoom */
+                        const scale = 4.0; 
                         const viewport = page.getViewport({scale: scale});
                         canvas.height = viewport.height;
                         canvas.width = viewport.width;
+                        canvas.style.width = '100%'; /* Ensures it fits the screen but retains high pixel density */
+                        canvas.style.maxWidth = '100%';
+                        canvas.style.height = 'auto';
+
                         if(firstCanvasHeight === 0) firstCanvasHeight = viewport.height / (canvas.offsetWidth / viewport.width || 1);
                         
                         const renderContext = { canvasContext: canvas.getContext('2d'), viewport: viewport };
@@ -1815,6 +1821,39 @@
         `;
         document.getElementById('massive-privacy-content').innerHTML = uniquePolicyHTML;
     }
+
+    /* EDGE LONG PRESS FOR DRAWER */
+    let edgeTimer;
+    let startEdgeX, startEdgeY;
+
+    document.addEventListener('touchstart', function(e) {
+        const touch = e.touches[0];
+        startEdgeX = touch.clientX;
+        startEdgeY = touch.clientY;
+        
+        // Agar touch screen ke ekdam left edge par ho (kinare se 30px ke andar)
+        if (startEdgeX < 30) {
+            edgeTimer = setTimeout(() => {
+                let drawer = document.getElementById('side-drawer');
+                // Open the drawer only if it's currently closed
+                if (!drawer.classList.contains('open')) {
+                    toggleDrawer();
+                }
+            }, 500); // 500ms tak tap hold karne par trigger hoga
+        }
+    });
+
+    document.addEventListener('touchmove', function(e) {
+        const touch = e.touches[0];
+        // Agar ungli kinare se hatt gayi ho ya slide kar gayi ho to timer cancel kar do
+        if (Math.abs(touch.clientX - startEdgeX) > 10 || Math.abs(touch.clientY - startEdgeY) > 10) {
+            clearTimeout(edgeTimer);
+        }
+    });
+
+    document.addEventListener('touchend', function(e) {
+        clearTimeout(edgeTimer);
+    });
 </script>
 </body>
 </html>
