@@ -1798,8 +1798,10 @@
     /* Delete Account */
     async function deleteAccount() {
         if(await cConfirm("WARNING: This will permanently delete your account, notes, history, and downloads. Are you sure?")) {
-            localStorage.clear();
-            location.reload();
+            if(await cConfirm("FINAL WARNING: Are you absolutely sure you want to delete everything? This action cannot be undone.")) {
+                localStorage.clear();
+                location.reload();
+            }
         }
     }
 
