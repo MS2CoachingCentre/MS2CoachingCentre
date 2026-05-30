@@ -503,7 +503,7 @@
             <input type="text" id="camera-name-input" placeholder="Enter Image Name..." style="width:100%; padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-color);">
             
             <button class="action-btn" style="background: #ff0844;" onclick="document.getElementById('camera-file-input').click()"><i class="fa-solid fa-camera"></i> Add Camera Pad 📸</button>
-            <input type="file" id="camera-file-input" accept="image/*" capture="camera" style="display:none" onchange="handleCameraUpload(event)">
+            <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display:none" onchange="handleCameraUpload(event)">
             <div id="camera-list-container"></div>
         </div>
     </div>
@@ -746,10 +746,10 @@
             </div>
             
             <p>App Version 11.09.20</p>
-            <a onclick="openPage('about-us-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">About Us</a>
-            <a onclick="openPage('contact-info-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Contact Us</a>
-            <a onclick="openPage('privacy-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Privacy Policy</a>
-            <a onclick="openPage('tos-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Terms of Service</a>
+            <a onclick="switchFromDrawer('about-us-page')" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">About Us</a>
+            <a onclick="switchFromDrawer('contact-info-page')" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Contact Us</a>
+            <a onclick="switchFromDrawer('privacy-page')" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Privacy Policy</a>
+            <a onclick="switchFromDrawer('tos-page')" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Terms of Service</a>
             <p>Made with ♥️ in India</p>
         </div>
     </div>
@@ -813,35 +813,25 @@
     });
     // ==========================================
 
-    /* GESTURE BACK BUTTON INTERCEPTION FOR PHONES */
-    // Keeps track of virtual navigation history state inside application context
-    function applyHistoryState() {
-        history.pushState({appPage: "subview"}, [htmlMatches="MS2App"]);
-    }
-    
+    /* NEW FLAWLESS STACK BACK NAVIGATION FOR PHONE SYSTEM BUTTON */
     window.addEventListener('popstate', function (event) {
-        // Intercepts the back gesture button on phone
-        let openSubpage = document.querySelector('.sub-page.open');
-        let drawer = document.getElementById('side-drawer');
         let modal = document.getElementById('custom-modal-overlay');
-        
+        let openSubpages = Array.from(document.querySelectorAll('.sub-page.open'));
+        let drawer = document.getElementById('side-drawer');
+
         if (modal && modal.style.display === 'flex') {
-            document.getElementById('custom-modal-overlay').style.display = 'none';
+            modal.style.display = 'none';
             if(cmResolve) { cmResolve(false); cmResolve = null; }
-            applyHistoryState();
-        } else if (openSubpage) {
-            // Close whatever viewer or nested subpage is currently active
-            if(openSubpage.id === 'media-viewer-page') {
-                closeMediaViewer();
-            } else {
-                openSubpage.classList.remove('open');
+        } else if (openSubpages.length > 0) {
+            let lastPage = openSubpages[openSubpages.length - 1];
+            if(lastPage.id === 'media-viewer-page') {
+                document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                document.getElementById('pdf-page-indicator').style.display = 'none';
             }
-            applyHistoryState();
+            lastPage.classList.remove('open');
         } else if (drawer && drawer.classList.contains('open')) {
-            toggleDrawer();
-            applyHistoryState();
-        } else {
-            // If completely at root homepage context, let it pop out to system home via center button defaults or fallback
+            drawer.classList.remove('open');
+            document.querySelector('.drawer-overlay').classList.remove('open');
         }
     });
 
@@ -856,12 +846,13 @@
         }, 1000);
     }
 
-    /* CUSTOM ALERTS - Modified colors for confirmation button hierarchy safely */
+    /* CUSTOM ALERTS */
     let cmResolve = null;
     function cAlert(msg) {
         document.getElementById('custom-modal-msg').innerText = msg;
         document.getElementById('cm-btn-no').style.display = 'none';
         document.getElementById('custom-modal-overlay').style.display = 'flex';
+        history.pushState({ modal: true }, "");
     }
     function cConfirm(msg) {
         return new Promise(resolve => {
@@ -869,11 +860,12 @@
             document.getElementById('cm-btn-no').style.display = 'inline-block';
             document.getElementById('custom-modal-overlay').style.display = 'flex';
             cmResolve = resolve;
+            history.pushState({ modal: true }, "");
         });
     }
     function cmCallback(res) {
-        document.getElementById('custom-modal-overlay').style.display = 'none';
         if(cmResolve) { cmResolve(res); cmResolve = null; }
+        history.back();
     }
 
     /* SEARCH FUNCTION */
@@ -888,7 +880,6 @@
     }
 
     window.onload = () => {
-        applyHistoryState();
         if(user) { 
             if(user.name === 'owner.MS².app') {
                 isAdmin = true;
@@ -983,12 +974,10 @@
         document.getElementById('tab-' + t).classList.add('active');
         el.classList.add('active');
         
-        // Add Animation classes based on tab selected
         const icon = el.querySelector('i');
         if (icon) {
             icon.classList.remove('animate-spin', 'animate-shake');
-            void icon.offsetWidth; // Trigger DOM reflow to restart animation
-
+            void icon.offsetWidth;
             if (t === 'special' || t === 'settings') {
                 icon.classList.add('animate-spin');
             } else if (t === 'notif') {
@@ -1001,9 +990,14 @@
     }
 
     function toggleDrawer() {
-        document.getElementById('side-drawer').classList.toggle('open');
-        document.querySelector('.drawer-overlay').classList.toggle('open');
-        applyHistoryState();
+        let drawer = document.getElementById('side-drawer');
+        if (!drawer.classList.contains('open')) {
+            drawer.classList.add('open');
+            document.querySelector('.drawer-overlay').classList.add('open');
+            history.pushState({ layer: 'drawer' }, "");
+        } else {
+            history.back();
+        }
     }
 
     function handleProfPic(e) {
@@ -1044,9 +1038,17 @@
     function openPage(p) { 
         document.getElementById(p).classList.add('open'); 
         if(p === 'leaderboard-page') rendLeaderboard();
-        applyHistoryState();
+        history.pushState({ page: p }, "");
     }
-    function closePage(p) { document.getElementById(p).classList.remove('open'); }
+    
+    function closePage(p) { history.back(); }
+
+    function switchFromDrawer(p) {
+        document.getElementById('side-drawer').classList.remove('open');
+        document.querySelector('.drawer-overlay').classList.remove('open');
+        document.getElementById(p).classList.add('open');
+        history.replaceState({ page: p }, "");
+    }
 
     /* LEADERBOARD & XP */
     function rendLeaderboard() {
@@ -1645,9 +1647,9 @@
         });
     }
 
-    /* PERFECT IN-APP MEDIA VIEWER LOGIC */
+    /* PERFECT IN-APP MEDIA VIEWER LOGIC WITH HIGH-RES ZOOM */
     function viewMedia(dataUrl, type) {
-        document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+        document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes');
         
         const container = document.getElementById('media-viewer-container');
         container.innerHTML = '';
@@ -1672,18 +1674,24 @@
                         canvas.className = 'pdf-page-canvas';
                         renderContainer.appendChild(canvas);
                         
-                        /* Modifed: High resolution rendering for sharp zoom */
-                        const scale = 4.0; 
-                        const viewport = page.getViewport({scale: scale});
-                        canvas.height = viewport.height;
-                        canvas.width = viewport.width;
-                        canvas.style.width = '100%'; /* Ensures it fits the screen but retains high pixel density */
+                        /* Modifed: Ultra High resolution rendering for sharp zoom */
+                        const baseScale = 2.5; 
+                        const viewport = page.getViewport({scale: baseScale});
+                        const outputScale = window.devicePixelRatio || 2;
+                        
+                        canvas.width = Math.floor(viewport.width * outputScale);
+                        canvas.height = Math.floor(viewport.height * outputScale);
+                        canvas.style.width = '100%'; 
                         canvas.style.maxWidth = '100%';
                         canvas.style.height = 'auto';
 
                         if(firstCanvasHeight === 0) firstCanvasHeight = viewport.height / (canvas.offsetWidth / viewport.width || 1);
                         
-                        const renderContext = { canvasContext: canvas.getContext('2d'), viewport: viewport };
+                        const renderContext = { 
+                            canvasContext: canvas.getContext('2d'), 
+                            viewport: viewport,
+                            transform: [outputScale, 0, 0, outputScale, 0, 0]
+                        };
                         page.render(renderContext);
                     });
                 }
@@ -1709,11 +1717,8 @@
         openPage('media-viewer-page');
     }
 
-    // STRICT FIX: Cleanly removes indicator overlay context upon active termination of PDF session
     function closeMediaViewer() {
-        document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-        document.getElementById('pdf-page-indicator').style.display = 'none';
-        closePage('media-viewer-page');
+        history.back(); // UI logic handles by popstate
     }
 
     /* CALCULATOR */
