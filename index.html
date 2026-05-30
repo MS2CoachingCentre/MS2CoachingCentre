@@ -1647,17 +1647,20 @@
 
     /* PERFECT IN-APP MEDIA VIEWER LOGIC */
     function viewMedia(dataUrl, type) {
-        document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+        window.currentPdfScale = 1; // Reset custom zoom scale
+        // Lock native browser zoom to prioritize our smooth custom pinch zoom
+        document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
         
         const container = document.getElementById('media-viewer-container');
         container.innerHTML = '';
+        container.style.alignItems = 'center'; // Initial alignment
         
         const indicator = document.getElementById('pdf-page-indicator');
         indicator.style.display = 'none';
 
         if(type === 'pdf') {
             document.getElementById('media-viewer-title').innerText = "View PDF";
-            container.innerHTML = `<div id="pdf-render-container"></div>`;
+            container.innerHTML = `<div id="pdf-render-container" style="align-items: center; width: 100%; display: flex; flex-direction: column;"></div>`;
             indicator.style.display = 'block';
             indicator.innerText = 'Page: 1';
 
@@ -1673,12 +1676,12 @@
                         renderContainer.appendChild(canvas);
                         
                         /* Modifed: High resolution rendering for sharp zoom */
-                        const scale = 4.0; 
+                        const scale = 4.0; // Keeps base clarity extremely sharp
                         const viewport = page.getViewport({scale: scale});
                         canvas.height = viewport.height;
                         canvas.width = viewport.width;
-                        canvas.style.width = '100%'; /* Ensures it fits the screen but retains high pixel density */
-                        canvas.style.maxWidth = '100%';
+                        canvas.style.width = (window.currentPdfScale * 100) + '%'; /* Custom Scale Handler */
+                        canvas.style.maxWidth = 'none'; // Unlocked for unlimited finger zoom
                         canvas.style.height = 'auto';
 
                         if(firstCanvasHeight === 0) firstCanvasHeight = viewport.height / (canvas.offsetWidth / viewport.width || 1);
@@ -1704,13 +1707,15 @@
             });
         } else {
             document.getElementById('media-viewer-title').innerText = "View Image";
-            container.innerHTML = `<img class="img-viewer-fullscreen" src="${dataUrl}">`;
+            container.innerHTML = `<img class="img-viewer-fullscreen" src="${dataUrl}" style="width: ${window.currentPdfScale * 100}%; max-width: none; max-height: 100vh;">`;
         }
         openPage('media-viewer-page');
     }
 
     // STRICT FIX: Cleanly removes indicator overlay context upon active termination of PDF session
     function closeMediaViewer() {
+        window.currentPdfScale = 1; // Reset zoom
+        document.getElementById('media-viewer-container').style.alignItems = 'center';
         document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
         document.getElementById('pdf-page-indicator').style.display = 'none';
         closePage('media-viewer-page');
@@ -1898,6 +1903,61 @@
     document.addEventListener('touchend', function(e) {
         clearTimeout(edgeTimer);
     });
+
+    /* --- CUSTOM PINCH-TO-ZOOM FOR MEDIA VIEWER --- */
+    window.currentPdfScale = 1;
+    let initialPinchDist = 0;
+    const mediaContainerObj = document.getElementById('media-viewer-container');
+
+    mediaContainerObj.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+            initialPinchDist = Math.hypot(
+                e.touches[0].pageX - e.touches[1].pageX,
+                e.touches[0].pageY - e.touches[1].pageY
+            );
+        }
+    }, {passive: false});
+
+    mediaContainerObj.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2) {
+            e.preventDefault(); 
+            const currentDist = Math.hypot(
+                e.touches[0].pageX - e.touches[1].pageX,
+                e.touches[0].pageY - e.touches[1].pageY
+            );
+            const delta = currentDist / initialPinchDist;
+            window.currentPdfScale = window.currentPdfScale * delta;
+            window.currentPdfScale = Math.max(1, Math.min(window.currentPdfScale, 6)); // Allow 1x to 6x zoom
+            
+            // Apply scales dynamically
+            const canvases = document.querySelectorAll('.pdf-page-canvas');
+            canvases.forEach(c => {
+                c.style.width = (window.currentPdfScale * 100) + '%';
+                c.style.maxWidth = 'none';
+            });
+            
+            const img = document.querySelector('.img-viewer-fullscreen');
+            if (img) {
+                img.style.width = (window.currentPdfScale * 100) + '%';
+                img.style.maxWidth = 'none';
+            }
+            
+            // Adjust alignments so zoomed edges don't get clipped
+            if (window.currentPdfScale > 1.02) {
+                mediaContainerObj.style.alignItems = 'flex-start';
+                const pdfContainer = document.getElementById('pdf-render-container');
+                if (pdfContainer) pdfContainer.style.alignItems = 'flex-start';
+                if (img) img.style.maxHeight = 'none';
+            } else {
+                mediaContainerObj.style.alignItems = 'center';
+                const pdfContainer = document.getElementById('pdf-render-container');
+                if (pdfContainer) pdfContainer.style.alignItems = 'center';
+                if (img) img.style.maxHeight = '100vh';
+            }
+            
+            initialPinchDist = currentDist;
+        }
+    }, {passive: false});
 </script>
 </body>
 </html>
