@@ -814,67 +814,34 @@
     // ==========================================
 
     /* GESTURE BACK BUTTON INTERCEPTION FOR PHONES */
-    let isAppInSubView = false;
-    
+    // Keeps track of virtual navigation history state inside application context
     function applyHistoryState() {
-        if (!isAppInSubView) {
-            history.pushState({appPage: "subview"}, "");
-            isAppInSubView = true;
-        }
-    }
-
-    function checkAndClearHistory() {
-        let modal = document.getElementById('custom-modal-overlay');
-        let drawer = document.getElementById('side-drawer');
-        let openPages = document.querySelectorAll('.sub-page.open');
-        let stillOpen = openPages.length > 0 ||
-                        (drawer && drawer.classList.contains('open')) ||
-                        (modal && modal.style.display === 'flex');
-
-        if (!stillOpen && isAppInSubView) {
-            history.back(); // Automatically sync and clean system back state
-        }
+        history.pushState({appPage: "subview"}, [htmlMatches="MS2App"]);
     }
     
     window.addEventListener('popstate', function (event) {
-        isAppInSubView = false; // State popped by device physical back button
-        
-        let modal = document.getElementById('custom-modal-overlay');
+        // Intercepts the back gesture button on phone
+        let openSubpage = document.querySelector('.sub-page.open');
         let drawer = document.getElementById('side-drawer');
-        let mediaViewer = document.getElementById('media-viewer-page');
-        let openPages = Array.from(document.querySelectorAll('.sub-page.open'));
+        let modal = document.getElementById('custom-modal-overlay');
         
-        let handled = false;
-
         if (modal && modal.style.display === 'flex') {
-            modal.style.display = 'none';
+            document.getElementById('custom-modal-overlay').style.display = 'none';
             if(cmResolve) { cmResolve(false); cmResolve = null; }
-            handled = true;
+            applyHistoryState();
+        } else if (openSubpage) {
+            // Close whatever viewer or nested subpage is currently active
+            if(openSubpage.id === 'media-viewer-page') {
+                closeMediaViewer();
+            } else {
+                openSubpage.classList.remove('open');
+            }
+            applyHistoryState();
         } else if (drawer && drawer.classList.contains('open')) {
-            drawer.classList.remove('open');
-            document.querySelector('.drawer-overlay').classList.remove('open');
-            handled = true;
-        } else if (mediaViewer && mediaViewer.classList.contains('open')) {
-            window.currentPdfScale = 1;
-            document.getElementById('media-viewer-container').style.alignItems = 'center';
-            document.getElementById('viewport-meta').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-            document.getElementById('pdf-page-indicator').style.display = 'none';
-            mediaViewer.classList.remove('open');
-            handled = true;
-        } else if (openPages.length > 0) {
-            let topmostPage = openPages[openPages.length - 1];
-            topmostPage.classList.remove('open');
-            handled = true;
-        }
-
-        let remainingPages = document.querySelectorAll('.sub-page.open');
-        let stillOpen = remainingPages.length > 0 ||
-                        (drawer && drawer.classList.contains('open')) ||
-                        (modal && modal.style.display === 'flex');
-
-        if (handled && stillOpen) {
-            history.pushState({appPage: "subview"}, "");
-            isAppInSubView = true;
+            toggleDrawer();
+            applyHistoryState();
+        } else {
+            // If completely at root homepage context, let it pop out to system home via center button defaults or fallback
         }
     });
 
@@ -895,7 +862,6 @@
         document.getElementById('custom-modal-msg').innerText = msg;
         document.getElementById('cm-btn-no').style.display = 'none';
         document.getElementById('custom-modal-overlay').style.display = 'flex';
-        applyHistoryState();
     }
     function cConfirm(msg) {
         return new Promise(resolve => {
@@ -903,13 +869,11 @@
             document.getElementById('cm-btn-no').style.display = 'inline-block';
             document.getElementById('custom-modal-overlay').style.display = 'flex';
             cmResolve = resolve;
-            applyHistoryState();
         });
     }
     function cmCallback(res) {
         document.getElementById('custom-modal-overlay').style.display = 'none';
         if(cmResolve) { cmResolve(res); cmResolve = null; }
-        checkAndClearHistory();
     }
 
     /* SEARCH FUNCTION */
@@ -924,6 +888,7 @@
     }
 
     window.onload = () => {
+        applyHistoryState();
         if(user) { 
             if(user.name === 'owner.MS².app') {
                 isAdmin = true;
@@ -1036,14 +1001,9 @@
     }
 
     function toggleDrawer() {
-        let drawer = document.getElementById('side-drawer');
-        let isOpening = !drawer.classList.contains('open');
-        
-        drawer.classList.toggle('open');
+        document.getElementById('side-drawer').classList.toggle('open');
         document.querySelector('.drawer-overlay').classList.toggle('open');
-        
-        if (isOpening) applyHistoryState();
-        else checkAndClearHistory();
+        applyHistoryState();
     }
 
     function handleProfPic(e) {
@@ -1086,11 +1046,7 @@
         if(p === 'leaderboard-page') rendLeaderboard();
         applyHistoryState();
     }
-    
-    function closePage(p) { 
-        document.getElementById(p).classList.remove('open'); 
-        checkAndClearHistory();
-    }
+    function closePage(p) { document.getElementById(p).classList.remove('open'); }
 
     /* LEADERBOARD & XP */
     function rendLeaderboard() {
