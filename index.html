@@ -308,7 +308,7 @@
             
             <div class="app-footer">
                 <h2>Welcome, In <br> MS² Coaching Centre</h2>
-                <p>Made with ♥️ in India</p>
+                <p>Made with ❤️ in India</p>
             </div>
         </div>
         
@@ -407,11 +407,6 @@
     <div id="xp-info-page" class="sub-page">
         <div class="sub-header"><i class="fa-solid fa-arrow-left" onclick="closePage('xp-info-page')"></i><h2>📚 XP Info......</h2></div>
         <div class="sub-content" style="text-align: center; padding: 30px 15px;">
-            <h2 style="color: var(--primary-color); font-family: 'Georgia', serif; margin-bottom: 20px;">How to earn 📚 XP points ?</h2>
-            <p style="font-size: 18px; line-height: 1.6; font-family: 'Georgia', serif; color: var(--text-color);">
-                When you read or stay in the App then, you will earn 📚 XP points per minute. If you do not this then, your rank will be demoted to your Classmates.
-            </p>
-            <br><br>
             <h2 style="color: var(--primary-color); font-family: 'Georgia', serif; margin-bottom: 20px;">What is 📚 XP ?</h2>
             <p style="font-size: 18px; line-height: 1.6; font-family: 'Georgia', serif; color: var(--text-color);">
                 📚 XP, which stands for Experience Points, is like a special points you earn by read or staying in the app. It's the main thing we look at in the Leaderboard to see how well you're doing compared to others.
@@ -422,14 +417,19 @@
                 The Leaderboard compares your activities and gives you a rank based on 📚 XP earned from login in the app to now. You can see your 📚 XP and compare it with your classmates in leaderboard.
             </p>
             <br><br>
-            <h2 style="color: var(--primary-color); font-family: 'Georgia', serif; margin-bottom: 20px;">What's benefit of 📚 XP ?</h2>
+            <h2 style="color: var(--primary-color); font-family: 'Georgia', serif; margin-bottom: 20px;">How to earn 📚 XP points ?</h2>
             <p style="font-size: 18px; line-height: 1.6; font-family: 'Georgia', serif; color: var(--text-color);">
-                If you are ranked 🥇1st, 🥈2nd, 🥉3rd for 1 month 🗓️ continuously, MS² Coaching Centre 🎓 will provide you many types of rewards 🎖️on 1st of the next month 🗓️.
+                When you read or stay in the App then, you will earn 📚 XP points per minute. If you do not this then, your rank will be demoted to your Classmates.
             </p>
             <br><br>
-            <h2 style="color: var(--primary-color); font-family: 'Georgia', serif; margin-bottom: 20px;"> ⚠️ Danger for 📚 XP❗</h2>
+            <h2 style="color: var(--primary-color); font-family: 'Georgia', serif; margin-bottom: 20px;">What's benefit of 📚 XP ?</h2>
             <p style="font-size: 18px; line-height: 1.6; font-family: 'Georgia', serif; color: var(--text-color);">
-                If you Permanently Delete your Account in Setting tab, then your all 📚 XP points are deleted and can't recovered and your rank is reset. If you login again in the app, then your 📚 XP points are zero and your rank will be demoted.
+                If your rank is 🥇1st, 🥈2nd, 🥉3rd for 1 month 🗓️ continuously, MS² Coaching Centre 🎓 will provide you many types of rewards 🎖️on 1st of the next month 🗓️.
+            </p>
+            <br><br>
+            <h2 style="color: var(--primary-color); font-family: 'Georgia', serif; margin-bottom: 20px;"> ⚠️ Danger step for 📚 XP❗</h2>
+            <p style="font-size: 18px; line-height: 1.6; font-family: 'Georgia', serif; color: var(--text-color);">
+                If you Permanently Delete your Account in Setting tab, then your all 📚 XP points are deleted and can't be recovered and your rank is reset. If you login again in the app, then your 📚 XP points are zero and your rank will be demoted in your leaderboard.
             </p>
             <br><br>
         </div>
@@ -771,7 +771,7 @@
             <a onclick="openPage('contact-info-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Contact Us</a>
             <a onclick="openPage('privacy-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Privacy Policy</a>
             <a onclick="openPage('tos-page'); toggleDrawer()" style="color:#4a90e2; cursor:pointer; display:block; margin:5px 0;">Terms of Service</a>
-            <p>Made with ♥️ in India</p>
+            <p>Made with ❤️ in India</p>
         </div>
     </div>
 </div>
@@ -1823,7 +1823,7 @@
 
     /* Delete Account */
     async function deleteAccount() {
-        if(await cConfirm("⚠️ WARNING : This will Permanently Delete your Account, all Notes, Calculator history, downloaded PDFs and more. Are you sure ?")) {
+        if(await cConfirm("⚠️ WARNING : This will Permanently Delete your Account (Note Pad, Camera Pad, Downloaded PDFs, and more). Are you sure ?")) {
             if(await cConfirm("⚠️ FINAL WARNING : Are you absolutely sure you want to delete everything ? This action cannot be undone.")) {
                 localStorage.clear();
                 location.reload();
